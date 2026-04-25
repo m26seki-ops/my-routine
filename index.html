@@ -8,24 +8,29 @@
 <meta name="apple-mobile-web-app-title" content="My Routine">
 <meta name="theme-color" content="#2e8b47">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>My Routine</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--g50:#f2faf3;--g100:#d4edda;--g200:#a8d9b3;--g400:#5db870;--g600:#2e8b47;--g800:#1a5c2e}
 body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a;min-height:100vh;min-height:100dvh}
-.app{max-width:480px;margin:0 auto;padding:0 1rem 2rem;background:#f2faf3;min-height:100vh;min-height:100dvh}
-.app-title{font-size:20px;font-weight:700;color:var(--g600);text-align:center;padding:0.8rem 0 0.6rem;letter-spacing:.04em}
-.top-bar{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;gap:8px}
-.date-big{font-size:22px;font-weight:700;color:var(--g600);line-height:1.1}
-.date-sub{font-size:12px;color:#888;margin-top:2px}
-.date-nav-row{display:flex;align-items:center;gap:6px;margin-top:6px}
-.nav-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:0.5px solid var(--g200);border-radius:20px;color:var(--g600);cursor:pointer;padding:4px 12px;font-size:12px}
-.nav-today{font-family:'M PLUS Rounded 1c',sans-serif;font-size:11px;background:var(--g600);color:#fff;border:none;border-radius:20px;padding:4px 10px;cursor:pointer}
-.top-actions{display:flex;flex-direction:column;gap:5px;align-items:flex-end;padding-top:2px}
-.icon-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:0.5px solid #ddd;border-radius:20px;color:#555;cursor:pointer;padding:5px 12px;font-size:12px;display:flex;align-items:center;gap:4px}
+.app{max-width:480px;margin:0 auto;padding:0 12px 2rem;background:#f2faf3;min-height:100vh;min-height:100dvh}
+.app-title{font-size:18px;font-weight:700;color:var(--g600);text-align:center;padding:0.7rem 0 0.5rem;letter-spacing:.04em}
+/* トップバー */
+.top-bar{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;gap:6px}
+.date-block{flex:0 0 auto}
+.date-big{font-size:20px;font-weight:700;color:var(--g600);line-height:1.2;white-space:nowrap}
+.date-sub{font-size:11px;color:#888;margin-top:1px}
+.date-nav-row{display:flex;align-items:center;gap:4px;margin-top:5px;flex-wrap:nowrap}
+.nav-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:0.5px solid var(--g200);border-radius:20px;color:var(--g600);cursor:pointer;padding:3px 10px;font-size:11px;white-space:nowrap}
+.nav-today{font-family:'M PLUS Rounded 1c',sans-serif;font-size:11px;background:var(--g600);color:#fff;border:none;border-radius:20px;padding:3px 10px;cursor:pointer;white-space:nowrap}
+/* 右上ボタン群 */
+.top-actions{display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex-shrink:0}
+.btn-row{display:flex;gap:4px;flex-wrap:nowrap}
+.icon-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:0.5px solid #ddd;border-radius:20px;color:#555;cursor:pointer;padding:4px 10px;font-size:11px;white-space:nowrap;display:flex;align-items:center;gap:3px;line-height:1}
 .icon-btn.active{background:var(--g50);border-color:var(--g400);color:var(--g600)}
+/* コンテンツ */
 .progress-section{background:var(--g50);border:0.5px solid var(--g200);border-radius:14px;padding:10px 14px;margin-bottom:10px}
 .progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
 .progress-pct{font-size:20px;font-weight:700;color:var(--g600)}
@@ -51,7 +56,7 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 .add-row{display:flex;gap:6px;margin-top:6px}
 .add-inp{flex:1;border:0.5px solid #ddd;border-radius:20px;padding:8px 14px;font-size:13px;background:#fff;color:#333;outline:none;font-family:'M PLUS Rounded 1c',sans-serif}
 .add-inp:focus{border-color:var(--g400)}
-.add-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:var(--g600);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;font-weight:700;white-space:nowrap}
+.add-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:var(--g600);color:#fff;border:none;border-radius:20px;padding:8px 14px;font-size:13px;cursor:pointer;font-weight:700;white-space:nowrap}
 .empty{text-align:center;padding:2.5rem;color:#aaa;font-size:13px;line-height:1.8}
 .edit-inp{font-family:'M PLUS Rounded 1c',sans-serif;border:0.5px solid var(--g400);border-radius:20px;padding:4px 10px;font-size:14px;background:#fff;color:#333;outline:none;width:100%}
 .panel{display:none}.panel.on{display:block}
@@ -68,7 +73,7 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 .backup-btn.export{background:var(--g600);color:#fff}
 .backup-btn.import{background:#fff;color:var(--g600);border:1.5px solid var(--g400)}
 .backup-btn.danger{background:#fff;color:#e17055;border:1.5px solid #e17055}
-/* 印刷選択モーダル */
+/* 印刷モーダル */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:flex-end;justify-content:center;z-index:1000;padding-bottom:env(safe-area-inset-bottom)}
 .modal-sheet{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:480px;padding:20px 20px calc(20px + env(safe-area-inset-bottom));font-family:'M PLUS Rounded 1c',sans-serif}
 .modal-title{font-size:15px;font-weight:700;color:#333;text-align:center;margin-bottom:16px}
@@ -78,37 +83,24 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 .modal-cancel{display:block;width:100%;background:none;border:none;color:#888;font-size:13px;font-family:'M PLUS Rounded 1c',sans-serif;padding:10px;cursor:pointer;text-align:center;margin-top:4px}
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;font-family:'M PLUS Rounded 1c',sans-serif;font-size:13px;padding:10px 20px;border-radius:20px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;white-space:nowrap}
 .toast.show{opacity:1}
-/* 印刷用スタイル */
 @media print{
   .top-actions,.date-nav-row,.panel:not(#print-target){display:none!important}
   #print-target{display:block!important}
   .modal-overlay{display:none!important}
   body{background:#fff}
   .app{padding:0;max-width:100%}
-  /* 日次記録 印刷 */
   .print-record .pbar-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#5db870!important}
   .print-record .pbar-bg{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#d4edda!important}
   .print-record .sec-badge{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#d4edda!important}
-  .print-record .chk,.print-record .item-acts{display:none}
-  /* 一覧 印刷 */
-  .print-list-wrap{font-family:'M PLUS Rounded 1c',sans-serif}
-  .print-list-wrap .pl-header{border-bottom:2px solid #5db870;padding-bottom:8px;margin-bottom:16px}
-  .print-list-wrap .pl-title{font-size:20px;font-weight:700;color:#2e8b47}
-  .print-list-wrap .pl-date{font-size:11px;color:#888;margin-top:2px}
-  .print-list-wrap .pl-sec{margin-bottom:14px}
-  .print-list-wrap .pl-sec-head{font-size:12px;font-weight:700;color:#2e8b47;background:#d4edda;-webkit-print-color-adjust:exact;print-color-adjust:exact;border-radius:6px;padding:3px 10px;display:inline-block;margin-bottom:6px}
-  .print-list-wrap .pl-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:0.5px solid #eee;font-size:13px}
-  .print-list-wrap .pl-box{width:14px;height:14px;border:1px solid #a8d9b3;border-radius:3px;flex-shrink:0}
-  .print-list-wrap .pl-footer{margin-top:20px;padding-top:8px;border-top:1px solid #d4edda;font-size:10px;color:#aaa;display:flex;justify-content:space-between}
+  .print-list-wrap .pl-sec-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#d4edda!important}
 }
-.print-only{display:none}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="app-title">🌿 My Routine</div>
   <div class="top-bar">
-    <div>
+    <div class="date-block">
       <div class="date-big" id="dateBig"></div>
       <div class="date-sub" id="dateSub"></div>
       <div class="date-nav-row">
@@ -118,13 +110,13 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
       </div>
     </div>
     <div class="top-actions">
-      <div style="display:flex;gap:5px">
+      <div class="btn-row">
         <button class="icon-btn" id="tabEdit" onclick="showPanel('edit',this)">✎ 編集</button>
         <button class="icon-btn" id="tabGraph" onclick="showPanel('graph',this)">▦ グラフ</button>
       </div>
-      <div style="display:flex;gap:5px">
+      <div class="btn-row">
         <button class="icon-btn" id="tabBackup" onclick="showPanel('backup',this)">💾 バックアップ</button>
-        <button class="icon-btn" onclick="showPrintModal()" style="font-size:11px">🖨 印刷</button>
+        <button class="icon-btn" onclick="showPrintModal()">🖨 印刷</button>
       </div>
     </div>
   </div>
@@ -132,21 +124,19 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
   <div id="panel-edit" class="panel"></div>
   <div id="panel-graph" class="panel"></div>
   <div id="panel-backup" class="panel"></div>
-  <!-- 印刷対象（非表示、印刷時のみ表示） -->
   <div id="print-target" style="display:none"></div>
 </div>
 
-<!-- 印刷選択モーダル -->
 <div class="modal-overlay" id="printModal" style="display:none" onclick="if(event.target===this)hidePrintModal()">
   <div class="modal-sheet">
     <div class="modal-title">🖨 何を印刷しますか？</div>
     <button class="modal-btn" onclick="doPrint('record')">
       <div class="modal-btn-title">📅 今日の記録</div>
-      <div class="modal-btn-desc">目標・ルーティーンのチェック状況・達成率・振り返りを印刷</div>
+      <div class="modal-btn-desc">目標・チェック状況・達成率・振り返りを印刷</div>
     </button>
     <button class="modal-btn" onclick="doPrint('list')">
       <div class="modal-btn-title">📋 ルーティーン一覧</div>
-      <div class="modal-btn-desc">時間帯ごとのルーティーンをすべて一覧印刷（チェックボックス付き）</div>
+      <div class="modal-btn-desc">時間帯ごとの全ルーティーンをチェックボックス付きで印刷</div>
     </button>
     <button class="modal-cancel" onclick="hidePrintModal()">キャンセル</button>
   </div>
@@ -193,8 +183,6 @@ function showToast(msg){
   t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
-
-/* === 印刷モーダル === */
 function showPrintModal(){document.getElementById('printModal').style.display='flex';}
 function hidePrintModal(){document.getElementById('printModal').style.display='none';}
 
@@ -206,9 +194,9 @@ function doPrint(type){
     const total=state.routines.length;
     const checked=Object.values(d.checked||{}).filter(Boolean).length;
     const rate=total?Math.round((checked/total)*100):0;
-    let h=`<div class="print-record">
+    let h=`<div class="print-record" style="font-family:'M PLUS Rounded 1c',sans-serif">
       <div style="border-bottom:2px solid #5db870;padding-bottom:8px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end">
-        <div style="font-size:20px;font-weight:700;color:#2e8b47">My Routine</div>
+        <div style="font-size:20px;font-weight:700;color:#2e8b47">🌿 My Routine</div>
         <div style="font-size:12px;color:#888">${dateBig(cur)}（${dateSub(cur)}）</div>
       </div>
       <div style="margin-bottom:12px">
@@ -226,12 +214,14 @@ function doPrint(type){
       const items=state.routines.filter(r=>r.time===t.id);
       if(!items.length)continue;
       h+=`<div style="margin-bottom:10px">
-        <div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:14px;margin-left:4px">${t.e}</span></div>`;
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+          <span class="sec-badge">${t.label}</span><span style="font-size:14px">${t.e}</span>
+        </div>`;
       for(const r of items){
         const on=!!(d.checked&&d.checked[r.id]);
-        h+=`<div class="routine-item ${on?'done':''}">
+        h+=`<div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:#fff;border:0.5px solid #ebebeb;border-radius:10px;margin-bottom:3px;${on?'opacity:0.55':''}">
           <div style="width:16px;height:16px;border-radius:50%;border:1.5px solid ${on?'#5db870':'#a8d9b3'};background:${on?'#5db870':'none'};display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:#fff;font-weight:700">${on?'✓':''}</div>
-          <span class="item-txt">${esc(r.name)}</span>
+          <span style="font-size:13px;color:#333;${on?'text-decoration:line-through':''}">${esc(r.name)}</span>
         </div>`;
       }
       h+='</div>';
@@ -242,45 +232,44 @@ function doPrint(type){
       </div>
       <div style="margin-top:20px;padding-top:8px;border-top:1px solid #d4edda;font-size:10px;color:#aaa;display:flex;justify-content:space-between">
         <span>My Routine</span><span>${dateBig(cur)} 印刷</span>
-      </div>
-    </div>`;
+      </div></div>`;
     pt.innerHTML=h;
   } else {
     const now=new Date();
-    let h=`<div class="print-list-wrap">
-      <div class="pl-header">
-        <div class="pl-title">My Routine — ルーティーン一覧</div>
-        <div class="pl-date">全${state.routines.length}件　印刷日: ${fmtKey(now)}</div>
+    let h=`<div class="print-list-wrap" style="font-family:'M PLUS Rounded 1c',sans-serif">
+      <div style="border-bottom:2px solid #5db870;padding-bottom:8px;margin-bottom:16px">
+        <div style="font-size:20px;font-weight:700;color:#2e8b47">🌿 My Routine — ルーティーン一覧</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">全${state.routines.length}件　印刷日: ${fmtKey(now)}</div>
       </div>`;
     let hasItem=false;
     for(const t of TIMES){
       const items=state.routines.filter(r=>r.time===t.id);
       if(!items.length)continue;
       hasItem=true;
-      h+=`<div class="pl-sec">
-        <div class="pl-sec-head">${t.label} ${t.e}</div>`;
+      h+=`<div style="margin-bottom:14px">
+        <div class="pl-sec-head" style="font-size:12px;font-weight:700;color:#2e8b47;background:#d4edda;border-radius:6px;padding:3px 10px;display:inline-block;margin-bottom:6px">${t.label} ${t.e}</div>`;
       for(const r of items){
-        h+=`<div class="pl-item"><div class="pl-box"></div><span>${esc(r.name)}</span></div>`;
+        h+=`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:0.5px solid #eee;font-size:13px;color:#333">
+          <div style="width:14px;height:14px;border:1px solid #a8d9b3;border-radius:3px;flex-shrink:0"></div>
+          <span>${esc(r.name)}</span>
+        </div>`;
       }
       h+='</div>';
     }
     if(!hasItem)h+=`<div style="text-align:center;padding:2rem;color:#aaa;font-size:13px">ルーティーンがありません</div>`;
-    h+=`<div class="pl-footer"><span>My Routine</span><span>${fmtKey(now)} 印刷</span></div></div>`;
+    h+=`<div style="margin-top:20px;padding-top:8px;border-top:1px solid #d4edda;font-size:10px;color:#aaa;display:flex;justify-content:space-between">
+      <span>My Routine</span><span>${fmtKey(now)} 印刷</span>
+    </div></div>`;
     pt.innerHTML=h;
   }
-  setTimeout(()=>{
-    window.print();
-    setTimeout(()=>{pt.innerHTML='';},800);
-  },100);
+  setTimeout(()=>{window.print();setTimeout(()=>{pt.innerHTML='';},800);},100);
 }
 
-/* === バックアップ機能 === */
 function exportJSON(){
   const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download=`my-routine-backup-${fmtKey(new Date())}.json`;
-  a.click();showToast('✅ JSONバックアップを保存しました');
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=`my-routine-backup-${fmtKey(new Date())}.json`;a.click();
+  showToast('✅ JSONバックアップを保存しました');
 }
 function exportCSV(){
   const rows=[['日付','ルーティーン名','時間帯','完了','目標','振り返り','達成率(%)']];
@@ -297,17 +286,12 @@ function exportCSV(){
   }
   const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
   const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download=`my-routine-backup-${fmtKey(new Date())}.csv`;
-  a.click();showToast('✅ CSVバックアップを保存しました');
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=`my-routine-backup-${fmtKey(new Date())}.csv`;a.click();
+  showToast('✅ CSVバックアップを保存しました');
 }
-function importJSON(){
-  const fi=document.getElementById('importFile');fi.accept='.json';fi.dataset.mode='json';fi.value='';fi.click();
-}
-function importCSV(){
-  const fi=document.getElementById('importFile');fi.accept='.csv';fi.dataset.mode='csv';fi.value='';fi.click();
-}
+function importJSON(){const fi=document.getElementById('importFile');fi.accept='.json';fi.dataset.mode='json';fi.value='';fi.click();}
+function importCSV(){const fi=document.getElementById('importFile');fi.accept='.csv';fi.dataset.mode='csv';fi.value='';fi.click();}
 function handleImport(input){
   const file=input.files[0];if(!file)return;
   const mode=input.dataset.mode;
@@ -319,7 +303,7 @@ function handleImport(input){
         if(!parsed.routines||!parsed.days)throw new Error('形式が違います');
         if(!confirm('現在のデータをすべて上書きしてインポートしますか？'))return;
         state=parsed;save();renderAll();showToast('✅ JSONデータを復元しました');
-      } else {
+      }else{
         const lines=e.target.result.split('\n').filter(l=>l.trim());
         if(lines.length<2){showToast('⚠️ データがありません');return;}
         if(!confirm('目標・振り返りのデータをCSVからインポートします。よろしいですか？'))return;
@@ -331,8 +315,7 @@ function handleImport(input){
         for(const row of rows){
           const k=row[0];if(!k||!/^\d{4}-\d{2}-\d{2}$/.test(k))continue;
           if(!state.days[k])state.days[k]={checked:{},goal:'',review:''};
-          if(row[4])state.days[k].goal=row[4];
-          if(row[5])state.days[k].review=row[5];
+          if(row[4])state.days[k].goal=row[4];if(row[5])state.days[k].review=row[5];
         }
         save();renderAll();showToast('✅ CSVデータを復元しました');
       }
@@ -351,7 +334,7 @@ function renderBackup(){
   document.getElementById('panel-backup').innerHTML=`
   <div class="backup-section">
     <div class="backup-title">📤 エクスポート（バックアップ）</div>
-    <div class="backup-desc">現在のデータをファイルに保存します。<br>ルーティーン設定・毎日の記録・目標・振り返りがすべて含まれます。<br>記録日数: <strong>${keyCount}日</strong>${lastKey?'　最終記録: <strong>'+lastKey+'</strong>':''}</div>
+    <div class="backup-desc">現在のデータをファイルに保存します。ルーティーン設定・毎日の記録・目標・振り返りがすべて含まれます。<br>記録日数: <strong>${keyCount}日</strong>${lastKey?'　最終記録: <strong>'+lastKey+'</strong>':''}</div>
     <div class="backup-row">
       <button class="backup-btn export" onclick="exportJSON()">📄 JSONで保存<br><span style="font-size:10px;font-weight:400">完全バックアップ・復元用</span></button>
       <button class="backup-btn export" onclick="exportCSV()">📊 CSVで保存<br><span style="font-size:10px;font-weight:400">Excelで開いて確認用</span></button>
@@ -359,7 +342,7 @@ function renderBackup(){
   </div>
   <div class="backup-section">
     <div class="backup-title">📥 インポート（復元）</div>
-    <div class="backup-desc">バックアップファイルからデータを復元します。<br><strong>JSON</strong>: 全データを完全に復元（現在のデータは上書き）<br><strong>CSV</strong>: 目標・振り返りのみ復元（ルーティーン設定は保持）</div>
+    <div class="backup-desc"><strong>JSON</strong>: 全データを完全に復元（現在のデータは上書き）<br><strong>CSV</strong>: 目標・振り返りのみ復元（ルーティーン設定は保持）</div>
     <div class="backup-row">
       <button class="backup-btn import" onclick="importJSON()">📄 JSONから復元<br><span style="font-size:10px">完全復元</span></button>
       <button class="backup-btn import" onclick="importCSV()">📊 CSVから復元<br><span style="font-size:10px">目標・振り返りのみ</span></button>
@@ -367,12 +350,10 @@ function renderBackup(){
   </div>
   <div class="backup-section">
     <div class="backup-title" style="color:#e17055">🗑️ データ全削除</div>
-    <div class="backup-desc">すべてのルーティーンと記録を削除します。この操作は取り消せません。削除前にバックアップを取ることをおすすめします。</div>
+    <div class="backup-desc">すべてのルーティーンと記録を削除します。削除前にバックアップを取ることをおすすめします。</div>
     <div class="backup-row"><button class="backup-btn danger" onclick="resetAll()">全データを削除する</button></div>
   </div>`;
 }
-
-/* === 既存機能 === */
 function renderHeader(){
   document.getElementById('dateBig').textContent=dateBig(cur);
   document.getElementById('dateSub').textContent=dateSub(cur);
