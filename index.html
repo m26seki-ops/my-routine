@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="My Routine">
+<meta name="theme-color" content="#2e8b47">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>My Routine</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--g50:#f2faf3;--g100:#d4edda;--g200:#a8d9b3;--g400:#5db870;--g600:#2e8b47;--g800:#1a5c2e}
+body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a;min-height:100vh;min-height:100dvh}
+.app{max-width:480px;margin:0 auto;padding:0 1rem 2rem;background:#f2faf3;min-height:100vh;min-height:100dvh}
+.app-title{font-size:20px;font-weight:700;color:var(--g600);text-align:center;padding:0.8rem 0 0.6rem;letter-spacing:.04em}
+.top-bar{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;gap:8px}
+.date-big{font-size:22px;font-weight:700;color:var(--g600);line-height:1.1}
+.date-sub{font-size:12px;color:#888;margin-top:2px}
+.date-nav-row{display:flex;align-items:center;gap:6px;margin-top:6px}
+.nav-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:0.5px solid var(--g200);border-radius:20px;color:var(--g600);cursor:pointer;padding:4px 12px;font-size:12px}
+.nav-today{font-family:'M PLUS Rounded 1c',sans-serif;font-size:11px;background:var(--g600);color:#fff;border:none;border-radius:20px;padding:4px 10px;cursor:pointer}
+.top-actions{display:flex;flex-direction:column;gap:5px;align-items:flex-end;padding-top:2px}
+.icon-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:0.5px solid #ddd;border-radius:20px;color:#555;cursor:pointer;padding:5px 12px;font-size:12px;display:flex;align-items:center;gap:4px}
+.icon-btn.active{background:var(--g50);border-color:var(--g400);color:var(--g600)}
+.progress-section{background:var(--g50);border:0.5px solid var(--g200);border-radius:14px;padding:10px 14px;margin-bottom:10px}
+.progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.progress-pct{font-size:20px;font-weight:700;color:var(--g600)}
+.progress-count{font-size:12px;color:#888}
+.pbar-bg{background:var(--g100);border-radius:20px;height:7px;overflow:hidden}
+.pbar-fill{height:100%;border-radius:20px;background:var(--g400);transition:width .4s}
+.msg-box{background:#fff;border:0.5px solid #e0e0e0;border-radius:14px;padding:10px 14px;margin-bottom:8px}
+.msg-label{font-size:11px;color:var(--g600);font-weight:700;margin-bottom:4px}
+.msg-ta{width:100%;border:none;background:none;color:#333;font-size:13px;resize:none;outline:none;font-family:'M PLUS Rounded 1c',sans-serif;min-height:44px;line-height:1.6}
+.section{margin-bottom:8px}
+.sec-head{display:flex;align-items:center;gap:6px;margin-bottom:5px;padding:0 2px}
+.sec-badge{font-family:'M PLUS Rounded 1c',sans-serif;font-size:11px;font-weight:700;background:var(--g100);color:var(--g800);border-radius:20px;padding:2px 10px}
+.routine-item{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#fff;border:0.5px solid #ebebeb;border-radius:12px;margin-bottom:4px;-webkit-tap-highlight-color:transparent}
+.routine-item.done{opacity:0.55}
+.routine-item.done .item-txt{text-decoration:line-through;color:#aaa}
+.chk{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--g200);background:none;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;color:transparent;font-size:13px;font-weight:700;font-family:'M PLUS Rounded 1c',sans-serif;-webkit-tap-highlight-color:transparent}
+.chk.on{background:var(--g400);border-color:var(--g400);color:#fff}
+.item-txt{flex:1;font-size:14px;color:#333;font-family:'M PLUS Rounded 1c',sans-serif}
+.drag-handle{color:#ccc;font-size:14px;cursor:grab;flex-shrink:0;padding:0 2px}
+.item-acts{display:flex;gap:4px}
+.ibtn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid #ddd;border-radius:20px;color:#aaa;cursor:pointer;padding:3px 8px;font-size:11px}
+.ibtn.del{color:#e17055;border-color:#e17055}
+.add-row{display:flex;gap:6px;margin-top:6px}
+.add-inp{flex:1;border:0.5px solid #ddd;border-radius:20px;padding:8px 14px;font-size:13px;background:#fff;color:#333;outline:none;font-family:'M PLUS Rounded 1c',sans-serif}
+.add-inp:focus{border-color:var(--g400)}
+.add-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:var(--g600);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;font-weight:700;white-space:nowrap}
+.empty{text-align:center;padding:2.5rem;color:#aaa;font-size:13px;line-height:1.8}
+.edit-inp{font-family:'M PLUS Rounded 1c',sans-serif;border:0.5px solid var(--g400);border-radius:20px;padding:4px 10px;font-size:14px;background:#fff;color:#333;outline:none;width:100%}
+.panel{display:none}.panel.on{display:block}
+.graph-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.stat-card{background:var(--g50);border:0.5px solid var(--g100);border-radius:12px;padding:10px;text-align:center}
+.stat-val{font-size:22px;font-weight:700;color:var(--g600)}
+.stat-lbl{font-size:11px;color:#888;margin-top:2px}
+.chart-wrap{background:#fff;border:0.5px solid #ebebeb;border-radius:14px;padding:14px}
+.backup-section{background:#fff;border:0.5px solid #ebebeb;border-radius:14px;padding:14px;margin-bottom:12px}
+.backup-title{font-size:13px;font-weight:700;color:var(--g600);margin-bottom:4px}
+.backup-desc{font-size:11px;color:#888;margin-bottom:10px;line-height:1.6}
+.backup-row{display:flex;gap:8px;flex-wrap:wrap}
+.backup-btn{font-family:'M PLUS Rounded 1c',sans-serif;border:none;border-radius:20px;padding:8px 16px;font-size:12px;cursor:pointer;font-weight:700;flex:1;min-width:120px;text-align:center}
+.backup-btn.export{background:var(--g600);color:#fff}
+.backup-btn.import{background:#fff;color:var(--g600);border:1.5px solid var(--g400)}
+.backup-btn.danger{background:#fff;color:#e17055;border:1.5px solid #e17055}
+/* 印刷選択モーダル */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:flex-end;justify-content:center;z-index:1000;padding-bottom:env(safe-area-inset-bottom)}
+.modal-sheet{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:480px;padding:20px 20px calc(20px + env(safe-area-inset-bottom));font-family:'M PLUS Rounded 1c',sans-serif}
+.modal-title{font-size:15px;font-weight:700;color:#333;text-align:center;margin-bottom:16px}
+.modal-btn{display:block;width:100%;background:var(--g50);border:0.5px solid var(--g200);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;text-align:left;font-family:'M PLUS Rounded 1c',sans-serif}
+.modal-btn-title{font-size:14px;font-weight:700;color:var(--g600)}
+.modal-btn-desc{font-size:11px;color:#888;margin-top:3px}
+.modal-cancel{display:block;width:100%;background:none;border:none;color:#888;font-size:13px;font-family:'M PLUS Rounded 1c',sans-serif;padding:10px;cursor:pointer;text-align:center;margin-top:4px}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;font-family:'M PLUS Rounded 1c',sans-serif;font-size:13px;padding:10px 20px;border-radius:20px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;white-space:nowrap}
+.toast.show{opacity:1}
+/* 印刷用スタイル */
+@media print{
+  .top-actions,.date-nav-row,.panel:not(#print-target){display:none!important}
+  #print-target{display:block!important}
+  .modal-overlay{display:none!important}
+  body{background:#fff}
+  .app{padding:0;max-width:100%}
+  /* 日次記録 印刷 */
+  .print-record .pbar-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#5db870!important}
+  .print-record .pbar-bg{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#d4edda!important}
+  .print-record .sec-badge{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#d4edda!important}
+  .print-record .chk,.print-record .item-acts{display:none}
+  /* 一覧 印刷 */
+  .print-list-wrap{font-family:'M PLUS Rounded 1c',sans-serif}
+  .print-list-wrap .pl-header{border-bottom:2px solid #5db870;padding-bottom:8px;margin-bottom:16px}
+  .print-list-wrap .pl-title{font-size:20px;font-weight:700;color:#2e8b47}
+  .print-list-wrap .pl-date{font-size:11px;color:#888;margin-top:2px}
+  .print-list-wrap .pl-sec{margin-bottom:14px}
+  .print-list-wrap .pl-sec-head{font-size:12px;font-weight:700;color:#2e8b47;background:#d4edda;-webkit-print-color-adjust:exact;print-color-adjust:exact;border-radius:6px;padding:3px 10px;display:inline-block;margin-bottom:6px}
+  .print-list-wrap .pl-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:0.5px solid #eee;font-size:13px}
+  .print-list-wrap .pl-box{width:14px;height:14px;border:1px solid #a8d9b3;border-radius:3px;flex-shrink:0}
+  .print-list-wrap .pl-footer{margin-top:20px;padding-top:8px;border-top:1px solid #d4edda;font-size:10px;color:#aaa;display:flex;justify-content:space-between}
+}
+.print-only{display:none}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="app-title">🌿 My Routine</div>
+  <div class="top-bar">
+    <div>
+      <div class="date-big" id="dateBig"></div>
+      <div class="date-sub" id="dateSub"></div>
+      <div class="date-nav-row">
+        <button class="nav-btn" onclick="cd(-1)">◀ 前日</button>
+        <button class="nav-btn" onclick="cd(1)">翌日 ▶</button>
+        <button class="nav-today" onclick="goToday()">今日</button>
+      </div>
+    </div>
+    <div class="top-actions">
+      <div style="display:flex;gap:5px">
+        <button class="icon-btn" id="tabEdit" onclick="showPanel('edit',this)">✎ 編集</button>
+        <button class="icon-btn" id="tabGraph" onclick="showPanel('graph',this)">▦ グラフ</button>
+      </div>
+      <div style="display:flex;gap:5px">
+        <button class="icon-btn" id="tabBackup" onclick="showPanel('backup',this)">💾 バックアップ</button>
+        <button class="icon-btn" onclick="showPrintModal()" style="font-size:11px">🖨 印刷</button>
+      </div>
+    </div>
+  </div>
+  <div id="panel-today" class="panel on"></div>
+  <div id="panel-edit" class="panel"></div>
+  <div id="panel-graph" class="panel"></div>
+  <div id="panel-backup" class="panel"></div>
+  <!-- 印刷対象（非表示、印刷時のみ表示） -->
+  <div id="print-target" style="display:none"></div>
+</div>
+
+<!-- 印刷選択モーダル -->
+<div class="modal-overlay" id="printModal" style="display:none" onclick="if(event.target===this)hidePrintModal()">
+  <div class="modal-sheet">
+    <div class="modal-title">🖨 何を印刷しますか？</div>
+    <button class="modal-btn" onclick="doPrint('record')">
+      <div class="modal-btn-title">📅 今日の記録</div>
+      <div class="modal-btn-desc">目標・ルーティーンのチェック状況・達成率・振り返りを印刷</div>
+    </button>
+    <button class="modal-btn" onclick="doPrint('list')">
+      <div class="modal-btn-title">📋 ルーティーン一覧</div>
+      <div class="modal-btn-desc">時間帯ごとのルーティーンをすべて一覧印刷（チェックボックス付き）</div>
+    </button>
+    <button class="modal-cancel" onclick="hidePrintModal()">キャンセル</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<input type="file" id="importFile" accept=".json,.csv" style="display:none" onchange="handleImport(this)">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const TIMES=[
+  {id:'morning',label:'朝',e:'🌅'},
+  {id:'forenoon',label:'午前',e:'☀️'},
+  {id:'noon',label:'昼',e:'🍱'},
+  {id:'afternoon',label:'午後',e:'🌤'},
+  {id:'evening',label:'夕',e:'🌇'},
+  {id:'night',label:'夜',e:'🌙'}
+];
+const WEEK=['日','月','火','水','木','金','土'];
+let state={routines:[],days:{}};
+let cur=todayKey();
+let dragSrc=null;
+let chart=null;
+let activePanel='today';
+
+function todayKey(){const d=new Date();return fmtKey(d);}
+function fmtKey(d){return `${d.getFullYear()}-${p2(d.getMonth()+1)}-${p2(d.getDate())}`;}
+function p2(n){return String(n).padStart(2,'0');}
+function keyToDate(k){const[y,m,d]=k.split('-').map(Number);return new Date(y,m-1,d);}
+function dateBig(k){const d=keyToDate(k);return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;}
+function dateSub(k){const d=keyToDate(k);return `${WEEK[d.getDay()]}曜日`;}
+function cd(n){const d=keyToDate(cur);d.setDate(d.getDate()+n);cur=fmtKey(d);renderAll();}
+function goToday(){cur=todayKey();renderAll();}
+function dayData(){if(!state.days[cur])state.days[cur]={checked:{},goal:'',review:''};return state.days[cur];}
+function save(){try{localStorage.setItem('myRoutineV3',JSON.stringify(state));}catch(e){}}
+function load(){try{const s=localStorage.getItem('myRoutineV3');if(s)state=JSON.parse(s);}catch(e){}}
+function calcRate(k){
+  if(!state.routines.length)return 0;
+  const d=state.days[k];if(!d)return 0;
+  return Math.round((Object.values(d.checked||{}).filter(Boolean).length/state.routines.length)*100);
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+/* === 印刷モーダル === */
+function showPrintModal(){document.getElementById('printModal').style.display='flex';}
+function hidePrintModal(){document.getElementById('printModal').style.display='none';}
+
+function doPrint(type){
+  hidePrintModal();
+  const pt=document.getElementById('print-target');
+  if(type==='record'){
+    const d=dayData();
+    const total=state.routines.length;
+    const checked=Object.values(d.checked||{}).filter(Boolean).length;
+    const rate=total?Math.round((checked/total)*100):0;
+    let h=`<div class="print-record">
+      <div style="border-bottom:2px solid #5db870;padding-bottom:8px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end">
+        <div style="font-size:20px;font-weight:700;color:#2e8b47">My Routine</div>
+        <div style="font-size:12px;color:#888">${dateBig(cur)}（${dateSub(cur)}）</div>
+      </div>
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;color:#2e8b47;margin-bottom:4px">🎯 今日の目標</div>
+        <div style="border:1px solid #d4edda;border-radius:8px;padding:8px 12px;font-size:13px;min-height:36px;color:#333">${esc(d.goal||'')}</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:16px;font-weight:700;color:#2e8b47">${rate}%</span>
+          <span style="font-size:12px;color:#888">${checked} / ${total} 完了</span>
+        </div>
+        <div class="pbar-bg"><div class="pbar-fill" style="width:${rate}%"></div></div>
+      </div>`;
+    for(const t of TIMES){
+      const items=state.routines.filter(r=>r.time===t.id);
+      if(!items.length)continue;
+      h+=`<div style="margin-bottom:10px">
+        <div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:14px;margin-left:4px">${t.e}</span></div>`;
+      for(const r of items){
+        const on=!!(d.checked&&d.checked[r.id]);
+        h+=`<div class="routine-item ${on?'done':''}">
+          <div style="width:16px;height:16px;border-radius:50%;border:1.5px solid ${on?'#5db870':'#a8d9b3'};background:${on?'#5db870':'none'};display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:#fff;font-weight:700">${on?'✓':''}</div>
+          <span class="item-txt">${esc(r.name)}</span>
+        </div>`;
+      }
+      h+='</div>';
+    }
+    h+=`<div style="margin-top:12px">
+        <div style="font-size:11px;font-weight:700;color:#2e8b47;margin-bottom:4px">📝 今日の振り返り</div>
+        <div style="border:1px solid #d4edda;border-radius:8px;padding:8px 12px;font-size:13px;min-height:56px;color:#333">${esc(d.review||'')}</div>
+      </div>
+      <div style="margin-top:20px;padding-top:8px;border-top:1px solid #d4edda;font-size:10px;color:#aaa;display:flex;justify-content:space-between">
+        <span>My Routine</span><span>${dateBig(cur)} 印刷</span>
+      </div>
+    </div>`;
+    pt.innerHTML=h;
+  } else {
+    const now=new Date();
+    let h=`<div class="print-list-wrap">
+      <div class="pl-header">
+        <div class="pl-title">My Routine — ルーティーン一覧</div>
+        <div class="pl-date">全${state.routines.length}件　印刷日: ${fmtKey(now)}</div>
+      </div>`;
+    let hasItem=false;
+    for(const t of TIMES){
+      const items=state.routines.filter(r=>r.time===t.id);
+      if(!items.length)continue;
+      hasItem=true;
+      h+=`<div class="pl-sec">
+        <div class="pl-sec-head">${t.label} ${t.e}</div>`;
+      for(const r of items){
+        h+=`<div class="pl-item"><div class="pl-box"></div><span>${esc(r.name)}</span></div>`;
+      }
+      h+='</div>';
+    }
+    if(!hasItem)h+=`<div style="text-align:center;padding:2rem;color:#aaa;font-size:13px">ルーティーンがありません</div>`;
+    h+=`<div class="pl-footer"><span>My Routine</span><span>${fmtKey(now)} 印刷</span></div></div>`;
+    pt.innerHTML=h;
+  }
+  setTimeout(()=>{
+    window.print();
+    setTimeout(()=>{pt.innerHTML='';},800);
+  },100);
+}
+
+/* === バックアップ機能 === */
+function exportJSON(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`my-routine-backup-${fmtKey(new Date())}.json`;
+  a.click();showToast('✅ JSONバックアップを保存しました');
+}
+function exportCSV(){
+  const rows=[['日付','ルーティーン名','時間帯','完了','目標','振り返り','達成率(%)']];
+  const keys=Object.keys(state.days).sort();
+  if(!keys.length){showToast('⚠️ 記録がまだありません');return;}
+  for(const k of keys){
+    const d=state.days[k];const rate=calcRate(k);
+    for(const r of state.routines){
+      const done=(d.checked&&d.checked[r.id])?'✓':'';
+      const t=TIMES.find(t=>t.id===r.time);
+      rows.push([k,r.name,t?t.label:'',done,d.goal||'',d.review||'',rate]);
+    }
+    if(!state.routines.length)rows.push([k,'','','',d.goal||'',d.review||'',rate]);
+  }
+  const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`my-routine-backup-${fmtKey(new Date())}.csv`;
+  a.click();showToast('✅ CSVバックアップを保存しました');
+}
+function importJSON(){
+  const fi=document.getElementById('importFile');fi.accept='.json';fi.dataset.mode='json';fi.value='';fi.click();
+}
+function importCSV(){
+  const fi=document.getElementById('importFile');fi.accept='.csv';fi.dataset.mode='csv';fi.value='';fi.click();
+}
+function handleImport(input){
+  const file=input.files[0];if(!file)return;
+  const mode=input.dataset.mode;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      if(mode==='json'){
+        const parsed=JSON.parse(e.target.result);
+        if(!parsed.routines||!parsed.days)throw new Error('形式が違います');
+        if(!confirm('現在のデータをすべて上書きしてインポートしますか？'))return;
+        state=parsed;save();renderAll();showToast('✅ JSONデータを復元しました');
+      } else {
+        const lines=e.target.result.split('\n').filter(l=>l.trim());
+        if(lines.length<2){showToast('⚠️ データがありません');return;}
+        if(!confirm('目標・振り返りのデータをCSVからインポートします。よろしいですか？'))return;
+        const rows=lines.slice(1).map(l=>{
+          const cols=[];let cu='',inQ=false;
+          for(const c of l){if(c==='"'){inQ=!inQ;}else if(c===','&&!inQ){cols.push(cu);cu='';}else cu+=c;}
+          cols.push(cu);return cols.map(c=>c.replace(/^"|"$/g,'').replace(/""/g,'"'));
+        });
+        for(const row of rows){
+          const k=row[0];if(!k||!/^\d{4}-\d{2}-\d{2}$/.test(k))continue;
+          if(!state.days[k])state.days[k]={checked:{},goal:'',review:''};
+          if(row[4])state.days[k].goal=row[4];
+          if(row[5])state.days[k].review=row[5];
+        }
+        save();renderAll();showToast('✅ CSVデータを復元しました');
+      }
+    }catch(err){showToast('❌ 読み込み失敗: '+err.message);}
+  };
+  if(mode==='json')reader.readAsText(file);else reader.readAsText(file,'UTF-8');
+}
+function resetAll(){
+  if(!confirm('⚠️ すべてのデータを削除します。この操作は取り消せません。\n本当に削除しますか？'))return;
+  if(!confirm('もう一度確認します。全データを削除しますか？'))return;
+  state={routines:[],days:{}};save();renderAll();showToast('🗑️ データを全削除しました');
+}
+function renderBackup(){
+  const keyCount=Object.keys(state.days).length;
+  const lastKey=Object.keys(state.days).sort().pop();
+  document.getElementById('panel-backup').innerHTML=`
+  <div class="backup-section">
+    <div class="backup-title">📤 エクスポート（バックアップ）</div>
+    <div class="backup-desc">現在のデータをファイルに保存します。<br>ルーティーン設定・毎日の記録・目標・振り返りがすべて含まれます。<br>記録日数: <strong>${keyCount}日</strong>${lastKey?'　最終記録: <strong>'+lastKey+'</strong>':''}</div>
+    <div class="backup-row">
+      <button class="backup-btn export" onclick="exportJSON()">📄 JSONで保存<br><span style="font-size:10px;font-weight:400">完全バックアップ・復元用</span></button>
+      <button class="backup-btn export" onclick="exportCSV()">📊 CSVで保存<br><span style="font-size:10px;font-weight:400">Excelで開いて確認用</span></button>
+    </div>
+  </div>
+  <div class="backup-section">
+    <div class="backup-title">📥 インポート（復元）</div>
+    <div class="backup-desc">バックアップファイルからデータを復元します。<br><strong>JSON</strong>: 全データを完全に復元（現在のデータは上書き）<br><strong>CSV</strong>: 目標・振り返りのみ復元（ルーティーン設定は保持）</div>
+    <div class="backup-row">
+      <button class="backup-btn import" onclick="importJSON()">📄 JSONから復元<br><span style="font-size:10px">完全復元</span></button>
+      <button class="backup-btn import" onclick="importCSV()">📊 CSVから復元<br><span style="font-size:10px">目標・振り返りのみ</span></button>
+    </div>
+  </div>
+  <div class="backup-section">
+    <div class="backup-title" style="color:#e17055">🗑️ データ全削除</div>
+    <div class="backup-desc">すべてのルーティーンと記録を削除します。この操作は取り消せません。削除前にバックアップを取ることをおすすめします。</div>
+    <div class="backup-row"><button class="backup-btn danger" onclick="resetAll()">全データを削除する</button></div>
+  </div>`;
+}
+
+/* === 既存機能 === */
+function renderHeader(){
+  document.getElementById('dateBig').textContent=dateBig(cur);
+  document.getElementById('dateSub').textContent=dateSub(cur);
+}
+function renderToday(){
+  const d=dayData();
+  const total=state.routines.length;
+  const checked=Object.values(d.checked||{}).filter(Boolean).length;
+  const rate=total?Math.round((checked/total)*100):0;
+  let h=`
+  <div class="msg-box">
+    <div class="msg-label">🎯 今日の目標</div>
+    <textarea class="msg-ta" placeholder="今日の目標を書こう..." oninput="upMsg('goal',this.value)">${esc(d.goal||'')}</textarea>
+  </div>
+  <div class="progress-section">
+    <div class="progress-row"><span class="progress-pct">${rate}%</span><span class="progress-count">${checked} / ${total} 完了</span></div>
+    <div class="pbar-bg"><div class="pbar-fill" style="width:${rate}%"></div></div>
+  </div>`;
+  for(const t of TIMES){
+    const items=state.routines.filter(r=>r.time===t.id);
+    if(!items.length)continue;
+    h+=`<div class="section"><div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:15px;margin-left:2px">${t.e}</span></div>`;
+    for(const r of items){
+      const on=!!(d.checked&&d.checked[r.id]);
+      h+=`<div class="routine-item ${on?'done':''}" onclick="tog('${r.id}')">
+        <button class="chk ${on?'on':''}" onclick="event.stopPropagation();tog('${r.id}')">✓</button>
+        <span class="item-txt">${esc(r.name)}</span>
+      </div>`;
+    }
+    h+='</div>';
+  }
+  if(!total)h+=`<div class="empty">ルーティーンがありません<br>右上「✎ 編集」から<br>追加してください</div>`;
+  h+=`<div class="msg-box" style="margin-top:8px">
+    <div class="msg-label">📝 今日の振り返り</div>
+    <textarea class="msg-ta" placeholder="今日を振り返ろう..." oninput="upMsg('review',this.value)">${esc(d.review||'')}</textarea>
+  </div>`;
+  document.getElementById('panel-today').innerHTML=h;
+}
+function renderEdit(){
+  let h='';
+  for(const t of TIMES){
+    const items=state.routines.filter(r=>r.time===t.id);
+    h+=`<div class="section"><div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:15px;margin-left:2px">${t.e}</span></div>`;
+    for(const r of items){
+      h+=`<div class="routine-item" draggable="true" data-id="${r.id}"
+        ondragstart="ds(event,'${r.id}')" ondragover="dov(event)" ondrop="dp(event,'${r.id}')">
+        <span class="drag-handle">☰</span>
+        <span class="item-txt" id="tx-${r.id}" onclick="startEdit('${r.id}')">${esc(r.name)}</span>
+        <div class="item-acts">
+          <select class="ibtn" style="font-size:11px;padding:3px 6px;font-family:'M PLUS Rounded 1c',sans-serif;border-radius:20px" onchange="chTime('${r.id}',this.value)">
+            ${TIMES.map(tt=>`<option value="${tt.id}"${tt.id===r.time?' selected':''}>${tt.label}</option>`).join('')}
+          </select>
+          <button class="ibtn del" onclick="delR('${r.id}')">削除</button>
+        </div>
+      </div>`;
+    }
+    h+=`<div class="add-row">
+      <input class="add-inp" id="ai-${t.id}" placeholder="${t.label}のルーティーンを追加..." onkeydown="if(event.key==='Enter')addR('${t.id}')">
+      <button class="add-btn" onclick="addR('${t.id}')">追加</button>
+    </div></div>`;
+  }
+  document.getElementById('panel-edit').innerHTML=h;
+}
+function renderGraph(){
+  const keys=[];const now=new Date();
+  for(let i=13;i>=0;i--){const d=new Date(now);d.setDate(d.getDate()-i);keys.push(fmtKey(d));}
+  const labels=keys.map(k=>{const d=keyToDate(k);return `${d.getMonth()+1}/${d.getDate()}`;});
+  const data=keys.map(k=>calcRate(k));
+  const avg7=Math.round(keys.slice(-7).reduce((a,k)=>a+calcRate(k),0)/7);
+  document.getElementById('panel-graph').innerHTML=`
+  <div class="graph-stat">
+    <div class="stat-card"><div class="stat-val">${calcRate(cur)}%</div><div class="stat-lbl">今日</div></div>
+    <div class="stat-card"><div class="stat-val">${avg7}%</div><div class="stat-lbl">7日平均</div></div>
+    <div class="stat-card"><div class="stat-val">${state.routines.length}</div><div class="stat-lbl">ルーティーン数</div></div>
+  </div>
+  <div class="chart-wrap">
+    <div style="font-size:12px;color:#888;margin-bottom:10px">過去14日間の達成率</div>
+    <div style="position:relative;height:200px"><canvas id="rc" role="img" aria-label="過去14日間の達成率">達成率推移</canvas></div>
+  </div>`;
+  setTimeout(()=>{
+    const canvas=document.getElementById('rc');if(!canvas)return;
+    if(chart){chart.destroy();chart=null;}
+    chart=new Chart(canvas,{
+      type:'bar',
+      data:{labels,datasets:[{label:'達成率(%)',data,backgroundColor:data.map(v=>v>=80?'#2e8b47':v>=50?'#5db870':'#a8d9b3'),borderRadius:6,borderSkipped:false}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{
+          y:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:11,family:"'M PLUS Rounded 1c'"}},grid:{color:'rgba(0,0,0,0.05)'},border:{display:false}},
+          x:{ticks:{font:{size:10,family:"'M PLUS Rounded 1c'"},maxRotation:45,autoSkip:false},grid:{display:false}}
+        }
+      }
+    });
+  },60);
+}
+function renderAll(){
+  renderHeader();renderToday();
+  if(activePanel==='edit')renderEdit();
+  if(activePanel==='graph')renderGraph();
+  if(activePanel==='backup')renderBackup();
+}
+function showPanel(id,btn){
+  if(activePanel===id){
+    document.getElementById('panel-'+id).classList.remove('on');
+    btn.classList.remove('active');
+    document.getElementById('panel-today').classList.add('on');
+    activePanel='today';return;
+  }
+  ['today','edit','graph','backup'].forEach(p=>document.getElementById('panel-'+p).classList.remove('on'));
+  document.querySelectorAll('.icon-btn[id^="tab"]').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('on');
+  btn.classList.add('active');
+  activePanel=id;
+  if(id==='edit')renderEdit();
+  if(id==='graph')renderGraph();
+  if(id==='backup')renderBackup();
+}
+function tog(id){const d=dayData();if(!d.checked)d.checked={};d.checked[id]=!d.checked[id];save();renderToday();}
+function upMsg(k,v){const d=dayData();d[k]=v;save();}
+function addR(tid){
+  const inp=document.getElementById('ai-'+tid);
+  const name=(inp.value||'').trim();if(!name)return;
+  state.routines.push({id:'r'+Date.now()+Math.random().toString(36).slice(2,5),name,time:tid});
+  inp.value='';save();renderEdit();
+}
+function delR(id){
+  if(!confirm('このルーティーンを削除しますか？'))return;
+  state.routines=state.routines.filter(r=>r.id!==id);
+  Object.keys(state.days).forEach(k=>{if(state.days[k].checked)delete state.days[k].checked[id];});
+  save();renderEdit();
+}
+function chTime(id,t){const r=state.routines.find(r=>r.id===id);if(r){r.time=t;save();renderEdit();}}
+function startEdit(id){
+  const r=state.routines.find(r=>r.id===id);if(!r)return;
+  const span=document.getElementById('tx-'+id);if(!span)return;
+  const inp=document.createElement('input');inp.className='edit-inp';inp.value=r.name;
+  span.replaceWith(inp);inp.focus();inp.select();
+  const sv=()=>{const v=inp.value.trim();if(v)r.name=v;save();renderEdit();};
+  inp.onblur=sv;inp.onkeydown=e=>{if(e.key==='Enter')sv();if(e.key==='Escape')renderEdit();};
+}
+function ds(e,id){dragSrc=id;e.dataTransfer.effectAllowed='move';}
+function dov(e){e.preventDefault();}
+function dp(e,tid){
+  e.preventDefault();if(!dragSrc||dragSrc===tid)return;
+  const si=state.routines.findIndex(r=>r.id===dragSrc);
+  const ti=state.routines.findIndex(r=>r.id===tid);
+  if(si<0||ti<0)return;
+  const[item]=state.routines.splice(si,1);state.routines.splice(ti,0,item);
+  save();renderEdit();dragSrc=null;
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+load();renderAll();
+</script>
+</body>
+</html>
