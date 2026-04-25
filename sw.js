@@ -1,4 +1,4 @@
-const CACHE = 'my-routine-v1';
+const CACHE = 'my-routine-v5';
 const ASSETS = [
   './',
   './index.html',
