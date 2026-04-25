@@ -50,8 +50,8 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 .chk.on{background:var(--g400);border-color:var(--g400);color:#fff}
 .item-txt{flex:1;font-size:14px;color:#333;font-family:'M PLUS Rounded 1c',sans-serif}
 .drag-handle{color:#ccc;font-size:14px;cursor:grab;flex-shrink:0;padding:0 2px}
-.move-btns{display:flex;flex-direction:row;gap:3px;flex-shrink:0}
-.move-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid var(--g200);border-radius:20px;color:var(--g600);cursor:pointer;padding:4px 9px;font-size:12px;line-height:1;-webkit-tap-highlight-color:transparent}
+.move-btns{display:flex;flex-direction:row;gap:2px;flex-shrink:0}
+.move-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid var(--g200);border-radius:16px;color:var(--g600);cursor:pointer;padding:3px 7px;font-size:10px;line-height:1;-webkit-tap-highlight-color:transparent}
 .move-btn:active{background:var(--g100)}
 .item-acts{display:flex;gap:4px}
 .ibtn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid #ddd;border-radius:20px;color:#aaa;cursor:pointer;padding:3px 8px;font-size:11px}
@@ -406,15 +406,15 @@ function renderEdit(){
       const isLast=gi===state.routines.length-1;
       h+=`<div class="routine-item" data-id="${r.id}">
         <div class="move-btns">
-          <button class="move-btn" onclick="moveR('${r.id}',-1)" ${isFirst?'disabled style="opacity:0.25"':''}>◀</button>
-          <button class="move-btn" onclick="moveR('${r.id}',1)" ${isLast?'disabled style="opacity:0.25"':''}>▶</button>
+          <button class="move-btn" onclick="moveR('${r.id}',-1)" ${isFirst?'disabled style="opacity:0.25"':''}>↑</button>
+          <button class="move-btn" onclick="moveR('${r.id}',1)" ${isLast?'disabled style="opacity:0.25"':''}>↓</button>
         </div>
         <span class="item-txt" id="tx-${r.id}" onclick="startEdit('${r.id}')">${esc(r.name)}</span>
         <div class="item-acts">
-          <select class="ibtn" style="font-size:11px;padding:3px 6px;font-family:'M PLUS Rounded 1c',sans-serif;border-radius:20px" onchange="chTime('${r.id}',this.value)">
+          <select class="ibtn" style="font-size:10px;padding:2px 4px;font-family:'M PLUS Rounded 1c',sans-serif;border-radius:20px" onchange="chTime('${r.id}',this.value)">
             ${TIMES.map(tt=>`<option value="${tt.id}"${tt.id===r.time?' selected':''}>${tt.label}</option>`).join('')}
           </select>
-          <button class="ibtn del" onclick="delR('${r.id}')">削除</button>
+          <button class="ibtn del" style="font-size:10px;padding:2px 6px" onclick="delR('${r.id}')">削除</button>
         </div>
       </div>`;
     }
