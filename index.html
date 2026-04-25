@@ -50,6 +50,9 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 .chk.on{background:var(--g400);border-color:var(--g400);color:#fff}
 .item-txt{flex:1;font-size:14px;color:#333;font-family:'M PLUS Rounded 1c',sans-serif}
 .drag-handle{color:#ccc;font-size:14px;cursor:grab;flex-shrink:0;padding:0 2px}
+.move-btns{display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+.move-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid var(--g200);border-radius:6px;color:var(--g600);cursor:pointer;padding:0px 7px;font-size:13px;line-height:1.6;-webkit-tap-highlight-color:transparent}
+.move-btn:active{background:var(--g100)}
 .item-acts{display:flex;gap:4px}
 .ibtn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid #ddd;border-radius:20px;color:#aaa;cursor:pointer;padding:3px 8px;font-size:11px}
 .ibtn.del{color:#e17055;border-color:#e17055}
@@ -158,7 +161,6 @@ const TIMES=[
 const WEEK=['日','月','火','水','木','金','土'];
 let state={routines:[],days:{}};
 let cur=todayKey();
-let dragSrc=null;
 let chart=null;
 let activePanel='today';
 
@@ -397,10 +399,16 @@ function renderEdit(){
   for(const t of TIMES){
     const items=state.routines.filter(r=>r.time===t.id);
     h+=`<div class="section"><div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:15px;margin-left:2px">${t.e}</span></div>`;
-    for(const r of items){
-      h+=`<div class="routine-item" draggable="true" data-id="${r.id}"
-        ondragstart="ds(event,'${r.id}')" ondragover="dov(event)" ondrop="dp(event,'${r.id}')">
-        <span class="drag-handle">☰</span>
+    for(let i=0;i<items.length;i++){
+      const r=items[i];
+      const gi=state.routines.findIndex(x=>x.id===r.id);
+      const isFirst=gi===0;
+      const isLast=gi===state.routines.length-1;
+      h+=`<div class="routine-item" data-id="${r.id}">
+        <div class="move-btns">
+          <button class="move-btn" onclick="moveR('${r.id}',-1)" ${isFirst?'disabled style="opacity:0.25"':''}>▲</button>
+          <button class="move-btn" onclick="moveR('${r.id}',1)" ${isLast?'disabled style="opacity:0.25"':''}>▼</button>
+        </div>
         <span class="item-txt" id="tx-${r.id}" onclick="startEdit('${r.id}')">${esc(r.name)}</span>
         <div class="item-acts">
           <select class="ibtn" style="font-size:11px;padding:3px 6px;font-family:'M PLUS Rounded 1c',sans-serif;border-radius:20px" onchange="chTime('${r.id}',this.value)">
@@ -493,15 +501,14 @@ function startEdit(id){
   const sv=()=>{const v=inp.value.trim();if(v)r.name=v;save();renderEdit();};
   inp.onblur=sv;inp.onkeydown=e=>{if(e.key==='Enter')sv();if(e.key==='Escape')renderEdit();};
 }
-function ds(e,id){dragSrc=id;e.dataTransfer.effectAllowed='move';}
-function dov(e){e.preventDefault();}
-function dp(e,tid){
-  e.preventDefault();if(!dragSrc||dragSrc===tid)return;
-  const si=state.routines.findIndex(r=>r.id===dragSrc);
-  const ti=state.routines.findIndex(r=>r.id===tid);
-  if(si<0||ti<0)return;
-  const[item]=state.routines.splice(si,1);state.routines.splice(ti,0,item);
-  save();renderEdit();dragSrc=null;
+function moveR(id,dir){
+  const i=state.routines.findIndex(r=>r.id===id);
+  const j=i+dir;
+  if(j<0||j>=state.routines.length)return;
+  const tmp=state.routines[i];
+  state.routines[i]=state.routines[j];
+  state.routines[j]=tmp;
+  save();renderEdit();
 }
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
