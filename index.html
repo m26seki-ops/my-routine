@@ -173,7 +173,13 @@ function dateSub(k){const d=keyToDate(k);return `${WEEK[d.getDay()]}曜日`;}
 function cd(n){const d=keyToDate(cur);d.setDate(d.getDate()+n);cur=fmtKey(d);renderAll();}
 function goToday(){cur=todayKey();renderAll();}
 function dayData(){if(!state.days[cur])state.days[cur]={checked:{},goal:'',review:''};return state.days[cur];}
-function save(){try{localStorage.setItem('myRoutineV3',JSON.stringify(state));}catch(e){}}
+function save(){
+  try{
+    localStorage.setItem('myRoutineV3',JSON.stringify(state));
+  }catch(e){
+    showToast('⚠️ 保存に失敗しました。ストレージ容量をご確認ください。');
+  }
+}
 function load(){try{const s=localStorage.getItem('myRoutineV3');if(s)state=JSON.parse(s);}catch(e){}}
 function calcRate(k){
   if(!state.routines.length)return 0;
@@ -482,9 +488,18 @@ function tog(id){const d=dayData();if(!d.checked)d.checked={};d.checked[id]=!d.c
 function upMsg(k,v){const d=dayData();d[k]=v;save();}
 function addR(tid){
   const inp=document.getElementById('ai-'+tid);
-  const name=(inp.value||'').trim();if(!name)return;
-  state.routines.push({id:'r'+Date.now()+Math.random().toString(36).slice(2,5),name,time:tid});
-  inp.value='';save();renderEdit();
+  const name=(inp.value||'').trim();
+  if(!name)return;
+  const id='r'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+  state.routines.push({id,name,time:tid});
+  inp.value='';
+  save();
+  renderEdit();
+  // 追加後に入力欄にフォーカスを戻す
+  setTimeout(()=>{
+    const el=document.getElementById('ai-'+tid);
+    if(el)el.focus();
+  },50);
 }
 function delR(id){
   if(!confirm('このルーティーンを削除しますか？'))return;
