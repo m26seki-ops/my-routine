@@ -53,6 +53,16 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 .move-btns{display:flex;flex-direction:row;gap:2px;flex-shrink:0}
 .move-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid var(--g200);border-radius:16px;color:var(--g600);cursor:pointer;padding:3px 7px;font-size:10px;line-height:1;-webkit-tap-highlight-color:transparent}
 .move-btn:active{background:var(--g100)}
+/* 並び替えモード */
+.sort-bar{display:flex;align-items:center;justify-content:space-between;background:var(--g600);border-radius:12px;padding:8px 14px;margin-bottom:10px}
+.sort-bar-txt{font-size:13px;font-weight:700;color:#fff}
+.sort-done-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:none;border-radius:20px;color:var(--g600);font-size:12px;font-weight:700;padding:5px 16px;cursor:pointer}
+.sort-item{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border:1.5px solid var(--g200);border-radius:12px;margin-bottom:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:box-shadow .15s,opacity .15s}
+.sort-item.dragging{opacity:0.5;box-shadow:0 8px 24px rgba(0,0,0,0.15);cursor:grabbing}
+.sort-item.drag-over{border-color:var(--g400);background:var(--g50)}
+.sort-handle{font-size:18px;color:var(--g400);flex-shrink:0}
+.sort-name{flex:1;font-size:14px;color:#333;font-family:'M PLUS Rounded 1c',sans-serif}
+.sort-time{font-size:11px;color:#888;background:var(--g50);border-radius:10px;padding:2px 8px;flex-shrink:0}
 .item-acts{display:flex;gap:4px}
 .ibtn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid #ddd;border-radius:20px;color:#aaa;cursor:pointer;padding:3px 8px;font-size:11px}
 .ibtn.del{color:#e17055;border-color:#e17055}
@@ -400,36 +410,113 @@ function renderToday(){
   </div>`;
   document.getElementById('panel-today').innerHTML=h;
 }
+let sortMode=false;
 function renderEdit(){
   let h='';
-  for(const t of TIMES){
-    const items=state.routines.filter(r=>r.time===t.id);
-    h+=`<div class="section"><div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:15px;margin-left:2px">${t.e}</span></div>`;
-    for(let i=0;i<items.length;i++){
-      const r=items[i];
-      const gi=state.routines.findIndex(x=>x.id===r.id);
-      const isFirst=gi===0;
-      const isLast=gi===state.routines.length-1;
-      h+=`<div class="routine-item" data-id="${r.id}">
-        <div class="move-btns">
-          <button class="move-btn" onclick="moveR('${r.id}',-1)" ${isFirst?'disabled style="opacity:0.25"':''}>↑</button>
-          <button class="move-btn" onclick="moveR('${r.id}',1)" ${isLast?'disabled style="opacity:0.25"':''}>↓</button>
-        </div>
-        <span class="item-txt" id="tx-${r.id}" onclick="startEdit('${r.id}')">${esc(r.name)}</span>
-        <div class="item-acts">
-          <select class="ibtn" style="font-size:10px;padding:2px 4px;font-family:'M PLUS Rounded 1c',sans-serif;border-radius:20px" onchange="chTime('${r.id}',this.value)">
-            ${TIMES.map(tt=>`<option value="${tt.id}"${tt.id===r.time?' selected':''}>${tt.label}</option>`).join('')}
-          </select>
-          <button class="ibtn del" style="font-size:10px;padding:2px 6px" onclick="delR('${r.id}')">削除</button>
-        </div>
+  if(sortMode){
+    h+=`<div class="sort-bar">
+      <span class="sort-bar-txt">☰ 並び替えモード</span>
+      <button class="sort-done-btn" onclick="exitSortMode()">✓ 完了</button>
+    </div><div id="sort-list">`;
+    for(const r of state.routines){
+      const t=TIMES.find(t=>t.id===r.time);
+      h+=`<div class="sort-item" data-id="${r.id}"
+        draggable="true"
+        ondragstart="sortDragStart(event,this)"
+        ondragover="sortDragOver(event,this)"
+        ondrop="sortDrop(event,this)"
+        ondragend="sortDragEnd()"
+        ontouchstart="touchStart(event,this)"
+        ontouchmove="touchMove(event)"
+        ontouchend="touchEnd(event)">
+        <span class="sort-handle">☰</span>
+        <span class="sort-name">${esc(r.name)}</span>
+        <span class="sort-time">${t?t.label+' '+t.e:''}</span>
       </div>`;
     }
-    h+=`<div class="add-row">
-      <input class="add-inp" id="ai-${t.id}" placeholder="${t.label}のルーティーンを追加..." onkeydown="if(event.key==='Enter')addR('${t.id}')">
-      <button class="add-btn" onclick="addR('${t.id}')">追加</button>
-    </div></div>`;
+    h+='</div>';
+  } else {
+    h+=`<div style="text-align:right;margin-bottom:8px">
+      <button class="icon-btn" onclick="enterSortMode()">☰ 並び替え</button>
+    </div>`;
+    for(const t of TIMES){
+      const items=state.routines.filter(r=>r.time===t.id);
+      h+=`<div class="section"><div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:15px;margin-left:2px">${t.e}</span></div>`;
+      for(const r of items){
+        h+=`<div class="routine-item" data-id="${r.id}">
+          <span class="item-txt" id="tx-${r.id}" onclick="startEdit('${r.id}')">${esc(r.name)}</span>
+          <div class="item-acts">
+            <select class="ibtn" style="font-size:10px;padding:2px 4px;font-family:'M PLUS Rounded 1c',sans-serif;border-radius:20px" onchange="chTime('${r.id}',this.value)">
+              ${TIMES.map(tt=>`<option value="${tt.id}"${tt.id===r.time?' selected':''}>${tt.label}</option>`).join('')}
+            </select>
+            <button class="ibtn del" style="font-size:10px;padding:2px 6px" onclick="delR('${r.id}')">削除</button>
+          </div>
+        </div>`;
+      }
+      h+=`<div class="add-row">
+        <input class="add-inp" id="ai-${t.id}" placeholder="${t.label}のルーティーンを追加..." onkeydown="if(event.key==='Enter')addR('${t.id}')">
+        <button class="add-btn" onclick="addR('${t.id}')">追加</button>
+      </div></div>`;
+    }
   }
   document.getElementById('panel-edit').innerHTML=h;
+}
+function enterSortMode(){sortMode=true;renderEdit();}
+function exitSortMode(){sortMode=false;save();renderEdit();showToast('✅ 並び替えを保存しました');}
+
+/* ドラッグ（PC） */
+let dragSrcId=null;
+function sortDragStart(e,el){dragSrcId=el.dataset.id;el.classList.add('dragging');e.dataTransfer.effectAllowed='move';}
+function sortDragOver(e,el){e.preventDefault();document.querySelectorAll('.sort-item').forEach(i=>i.classList.remove('drag-over'));if(el.dataset.id!==dragSrcId)el.classList.add('drag-over');}
+function sortDrop(e,el){
+  e.preventDefault();
+  const tid=el.dataset.id;if(!dragSrcId||dragSrcId===tid)return;
+  const si=state.routines.findIndex(r=>r.id===dragSrcId);
+  const ti=state.routines.findIndex(r=>r.id===tid);
+  if(si<0||ti<0)return;
+  const[item]=state.routines.splice(si,1);state.routines.splice(ti,0,item);
+  renderEdit();
+}
+function sortDragEnd(){document.querySelectorAll('.sort-item').forEach(i=>{i.classList.remove('dragging');i.classList.remove('drag-over');});dragSrcId=null;}
+
+/* タッチ（iPhone） */
+let touchDragEl=null,touchDragId=null,touchClone=null,touchOffsetY=0;
+function touchStart(e,el){
+  touchDragEl=el;touchDragId=el.dataset.id;
+  const touch=e.touches[0];
+  const rect=el.getBoundingClientRect();
+  touchOffsetY=touch.clientY-rect.top;
+  touchClone=el.cloneNode(true);
+  touchClone.style.cssText=`position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;opacity:0.85;z-index:9999;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,0.18);border:1.5px solid #5db870;border-radius:12px;background:#fff;`;
+  document.body.appendChild(touchClone);
+  el.style.opacity='0.3';
+}
+function touchMove(e){
+  if(!touchClone)return;
+  e.preventDefault();
+  const touch=e.touches[0];
+  touchClone.style.top=(touch.clientY-touchOffsetY)+'px';
+  touchClone.style.display='none';
+  const below=document.elementFromPoint(touch.clientX,touch.clientY);
+  touchClone.style.display='';
+  const target=below?below.closest('.sort-item'):null;
+  document.querySelectorAll('.sort-item').forEach(i=>i.classList.remove('drag-over'));
+  if(target&&target.dataset.id&&target.dataset.id!==touchDragId)target.classList.add('drag-over');
+}
+function touchEnd(e){
+  if(!touchClone||!touchDragEl)return;
+  const touch=e.changedTouches[0];
+  touchClone.style.display='none';
+  const below=document.elementFromPoint(touch.clientX,touch.clientY);
+  touchClone.style.display='';
+  const target=below?below.closest('.sort-item'):null;
+  if(target&&target.dataset.id&&target.dataset.id!==touchDragId){
+    const si=state.routines.findIndex(r=>r.id===touchDragId);
+    const ti=state.routines.findIndex(r=>r.id===target.dataset.id);
+    if(si>=0&&ti>=0){const[item]=state.routines.splice(si,1);state.routines.splice(ti,0,item);}
+  }
+  touchClone.remove();touchClone=null;touchDragEl.style.opacity='';touchDragEl=null;touchDragId=null;
+  renderEdit();
 }
 function renderGraph(){
   const keys=[];const now=new Date();
@@ -515,15 +602,6 @@ function startEdit(id){
   span.replaceWith(inp);inp.focus();inp.select();
   const sv=()=>{const v=inp.value.trim();if(v)r.name=v;save();renderEdit();};
   inp.onblur=sv;inp.onkeydown=e=>{if(e.key==='Enter')sv();if(e.key==='Escape')renderEdit();};
-}
-function moveR(id,dir){
-  const i=state.routines.findIndex(r=>r.id===id);
-  const j=i+dir;
-  if(j<0||j>=state.routines.length)return;
-  const tmp=state.routines[i];
-  state.routines[i]=state.routines[j];
-  state.routines[j]=tmp;
-  save();renderEdit();
 }
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
