@@ -17,7 +17,6 @@
 body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a;min-height:100vh;min-height:100dvh}
 .app{max-width:480px;margin:0 auto;padding:0 12px 2rem;background:#f2faf3;min-height:100vh;min-height:100dvh}
 .app-title{font-size:18px;font-weight:700;color:var(--g600);text-align:center;padding:0.7rem 0 0.5rem;letter-spacing:.04em}
-/* トップバー */
 .top-bar{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;gap:6px}
 .date-block{flex:0 0 auto}
 .date-big{font-size:20px;font-weight:700;color:var(--g600);line-height:1.2;white-space:nowrap}
@@ -25,12 +24,10 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 .date-nav-row{display:flex;align-items:center;gap:4px;margin-top:5px;flex-wrap:nowrap}
 .nav-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:0.5px solid var(--g200);border-radius:20px;color:var(--g600);cursor:pointer;padding:3px 10px;font-size:11px;white-space:nowrap}
 .nav-today{font-family:'M PLUS Rounded 1c',sans-serif;font-size:11px;background:var(--g600);color:#fff;border:none;border-radius:20px;padding:3px 10px;cursor:pointer;white-space:nowrap}
-/* 右上ボタン群 */
 .top-actions{display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex-shrink:0}
 .btn-row{display:flex;gap:4px;flex-wrap:nowrap}
 .icon-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:0.5px solid #ddd;border-radius:20px;color:#555;cursor:pointer;padding:4px 10px;font-size:11px;white-space:nowrap;display:flex;align-items:center;gap:3px;line-height:1}
 .icon-btn.active{background:var(--g50);border-color:var(--g400);color:var(--g600)}
-/* コンテンツ */
 .progress-section{background:var(--g50);border:0.5px solid var(--g200);border-radius:14px;padding:10px 14px;margin-bottom:10px}
 .progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
 .progress-pct{font-size:20px;font-weight:700;color:var(--g600)}
@@ -46,23 +43,9 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 .routine-item{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#fff;border:0.5px solid #ebebeb;border-radius:12px;margin-bottom:4px;-webkit-tap-highlight-color:transparent}
 .routine-item.done{opacity:0.55}
 .routine-item.done .item-txt{text-decoration:line-through;color:#aaa}
-.chk{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--g200);background:none;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;color:transparent;font-size:13px;font-weight:700;font-family:'M PLUS Rounded 1c',sans-serif;-webkit-tap-highlight-color:transparent}
+.chk{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--g200);background:none;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;color:transparent;font-size:13px;font-weight:700;-webkit-tap-highlight-color:transparent}
 .chk.on{background:var(--g400);border-color:var(--g400);color:#fff}
-.item-txt{flex:1;font-size:14px;color:#333;font-family:'M PLUS Rounded 1c',sans-serif}
-.drag-handle{color:#ccc;font-size:14px;cursor:grab;flex-shrink:0;padding:0 2px}
-.move-btns{display:flex;flex-direction:row;gap:2px;flex-shrink:0}
-.move-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid var(--g200);border-radius:16px;color:var(--g600);cursor:pointer;padding:3px 7px;font-size:10px;line-height:1;-webkit-tap-highlight-color:transparent}
-.move-btn:active{background:var(--g100)}
-/* 並び替えモード */
-.sort-bar{display:flex;align-items:center;justify-content:space-between;background:var(--g600);border-radius:12px;padding:8px 14px;margin-bottom:10px}
-.sort-bar-txt{font-size:13px;font-weight:700;color:#fff}
-.sort-done-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:none;border-radius:20px;color:var(--g600);font-size:12px;font-weight:700;padding:5px 16px;cursor:pointer}
-.sort-item{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border:1.5px solid var(--g200);border-radius:12px;margin-bottom:6px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:box-shadow .15s,opacity .15s}
-.sort-item.dragging{opacity:0.5;box-shadow:0 8px 24px rgba(0,0,0,0.15);cursor:grabbing}
-.sort-item.drag-over{border-color:var(--g400);background:var(--g50)}
-.sort-handle{font-size:18px;color:var(--g400);flex-shrink:0}
-.sort-name{flex:1;font-size:14px;color:#333;font-family:'M PLUS Rounded 1c',sans-serif}
-.sort-time{font-size:11px;color:#888;background:var(--g50);border-radius:10px;padding:2px 8px;flex-shrink:0}
+.item-txt{flex:1;font-size:14px;color:#333}
 .item-acts{display:flex;gap:4px}
 .ibtn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid #ddd;border-radius:20px;color:#aaa;cursor:pointer;padding:3px 8px;font-size:11px}
 .ibtn.del{color:#e17055;border-color:#e17055}
@@ -73,11 +56,35 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 .empty{text-align:center;padding:2.5rem;color:#aaa;font-size:13px;line-height:1.8}
 .edit-inp{font-family:'M PLUS Rounded 1c',sans-serif;border:0.5px solid var(--g400);border-radius:20px;padding:4px 10px;font-size:14px;background:#fff;color:#333;outline:none;width:100%}
 .panel{display:none}.panel.on{display:block}
+/* 並び替えモード */
+.sort-bar{display:flex;align-items:center;justify-content:space-between;background:var(--g600);border-radius:12px;padding:8px 14px;margin-bottom:10px;position:sticky;top:0;z-index:10}
+.sort-bar-txt{font-size:13px;font-weight:700;color:#fff}
+.sort-done-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:#fff;border:none;border-radius:20px;color:var(--g600);font-size:12px;font-weight:700;padding:5px 16px;cursor:pointer}
+/* sort-itemは左のハンドル部分のみtouchを受け付ける */
+.sort-item{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#fff;border:1px solid var(--g200);border-radius:12px;margin-bottom:5px;user-select:none;-webkit-user-select:none;transition:box-shadow .15s,opacity .15s}
+.sort-item.dragging{opacity:0.4;box-shadow:0 6px 20px rgba(0,0,0,0.15)}
+.sort-item.drag-over{border-color:var(--g400);background:var(--g50)}
+.sort-handle{font-size:20px;color:var(--g400);flex-shrink:0;padding:4px 6px;cursor:grab;touch-action:none;-webkit-tap-highlight-color:transparent}
+.sort-name{flex:1;font-size:14px;color:#333;touch-action:pan-y}
+.sort-time-badge{font-size:10px;color:#888;background:var(--g50);border-radius:10px;padding:2px 7px;flex-shrink:0}
+/* 時間帯管理 */
+.time-section{background:#fff;border:0.5px solid #ebebeb;border-radius:14px;padding:12px 14px;margin-bottom:8px}
+.time-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.time-section-label{display:flex;align-items:center;gap:6px}
+.time-name-inp{font-family:'M PLUS Rounded 1c',sans-serif;border:0.5px solid var(--g200);border-radius:20px;padding:3px 10px;font-size:13px;color:#333;background:#f9f9f9;outline:none;width:80px}
+.time-name-inp:focus{border-color:var(--g400);background:#fff}
+.time-emoji-inp{font-family:'M PLUS Rounded 1c',sans-serif;border:0.5px solid var(--g200);border-radius:20px;padding:3px 8px;font-size:15px;color:#333;background:#f9f9f9;outline:none;width:52px;text-align:center}
+.time-del-btn{font-family:'M PLUS Rounded 1c',sans-serif;background:none;border:0.5px solid #e17055;border-radius:20px;color:#e17055;cursor:pointer;padding:3px 8px;font-size:11px;white-space:nowrap}
+.add-time-row{display:flex;gap:6px;margin-top:4px;align-items:center}
+.add-time-inp{flex:1;border:0.5px solid #ddd;border-radius:20px;padding:7px 14px;font-size:13px;background:#fff;color:#333;outline:none;font-family:'M PLUS Rounded 1c',sans-serif}
+.add-time-inp:focus{border-color:var(--g400)}
+/* グラフ */
 .graph-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
 .stat-card{background:var(--g50);border:0.5px solid var(--g100);border-radius:12px;padding:10px;text-align:center}
 .stat-val{font-size:22px;font-weight:700;color:var(--g600)}
 .stat-lbl{font-size:11px;color:#888;margin-top:2px}
 .chart-wrap{background:#fff;border:0.5px solid #ebebeb;border-radius:14px;padding:14px}
+/* バックアップ */
 .backup-section{background:#fff;border:0.5px solid #ebebeb;border-radius:14px;padding:14px;margin-bottom:12px}
 .backup-title{font-size:13px;font-weight:700;color:var(--g600);margin-bottom:4px}
 .backup-desc{font-size:11px;color:#888;margin-bottom:10px;line-height:1.6}
@@ -86,11 +93,11 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 .backup-btn.export{background:var(--g600);color:#fff}
 .backup-btn.import{background:#fff;color:var(--g600);border:1.5px solid var(--g400)}
 .backup-btn.danger{background:#fff;color:#e17055;border:1.5px solid #e17055}
-/* 印刷モーダル */
+/* モーダル */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:flex-end;justify-content:center;z-index:1000;padding-bottom:env(safe-area-inset-bottom)}
 .modal-sheet{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:480px;padding:20px 20px calc(20px + env(safe-area-inset-bottom));font-family:'M PLUS Rounded 1c',sans-serif}
 .modal-title{font-size:15px;font-weight:700;color:#333;text-align:center;margin-bottom:16px}
-.modal-btn{display:block;width:100%;background:var(--g50);border:0.5px solid var(--g200);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;text-align:left;font-family:'M PLUS Rounded 1c',sans-serif}
+.modal-btn{display:block;width:100%;background:var(--g50);border:0.5px solid var(--g200);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;text-align:left}
 .modal-btn-title{font-size:14px;font-weight:700;color:var(--g600)}
 .modal-btn-desc{font-size:11px;color:#888;margin-top:3px}
 .modal-cancel{display:block;width:100%;background:none;border:none;color:#888;font-size:13px;font-family:'M PLUS Rounded 1c',sans-serif;padding:10px;cursor:pointer;text-align:center;margin-top:4px}
@@ -105,7 +112,6 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
   .print-record .pbar-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#5db870!important}
   .print-record .pbar-bg{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#d4edda!important}
   .print-record .sec-badge{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#d4edda!important}
-  .print-list-wrap .pl-sec-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#d4edda!important}
 }
 </style>
 </head>
@@ -160,7 +166,8 @@ body{font-family:'M PLUS Rounded 1c',sans-serif;background:#f2faf3;color:#1a1a1a
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-const TIMES=[
+// デフォルト時間帯
+const DEFAULT_TIMES=[
   {id:'morning',label:'朝',e:'🌅'},
   {id:'forenoon',label:'午前',e:'☀️'},
   {id:'noon',label:'昼',e:'🍱'},
@@ -169,10 +176,13 @@ const TIMES=[
   {id:'night',label:'夜',e:'🌙'}
 ];
 const WEEK=['日','月','火','水','木','金','土'];
-let state={routines:[],days:{}};
+let state={routines:[],days:{},times:null}; // timesはload後に初期化
 let cur=todayKey();
 let chart=null;
 let activePanel='today';
+let sortMode=false;
+
+function getTimes(){return state.times||DEFAULT_TIMES;}
 
 function todayKey(){const d=new Date();return fmtKey(d);}
 function fmtKey(d){return `${d.getFullYear()}-${p2(d.getMonth()+1)}-${p2(d.getDate())}`;}
@@ -184,13 +194,20 @@ function cd(n){const d=keyToDate(cur);d.setDate(d.getDate()+n);cur=fmtKey(d);ren
 function goToday(){cur=todayKey();renderAll();}
 function dayData(){if(!state.days[cur])state.days[cur]={checked:{},goal:'',review:''};return state.days[cur];}
 function save(){
-  try{
-    localStorage.setItem('myRoutineV3',JSON.stringify(state));
-  }catch(e){
-    showToast('⚠️ 保存に失敗しました。ストレージ容量をご確認ください。');
-  }
+  try{localStorage.setItem('myRoutineV3',JSON.stringify(state));}
+  catch(e){showToast('⚠️ 保存に失敗しました');}
 }
-function load(){try{const s=localStorage.getItem('myRoutineV3');if(s)state=JSON.parse(s);}catch(e){}}
+function load(){
+  try{
+    const s=localStorage.getItem('myRoutineV3');
+    if(s){
+      state=JSON.parse(s);
+      if(!state.times)state.times=DEFAULT_TIMES.map(t=>({...t}));
+    } else {
+      state.times=DEFAULT_TIMES.map(t=>({...t}));
+    }
+  }catch(e){state.times=DEFAULT_TIMES.map(t=>({...t}));}
+}
 function calcRate(k){
   if(!state.routines.length)return 0;
   const d=state.days[k];if(!d)return 0;
@@ -201,88 +218,304 @@ function showToast(msg){
   t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
-function showPrintModal(){document.getElementById('printModal').style.display='flex';}
-function hidePrintModal(){document.getElementById('printModal').style.display='none';}
 
-function doPrint(type){
-  hidePrintModal();
-  const pt=document.getElementById('print-target');
-  if(type==='record'){
-    const d=dayData();
-    const total=state.routines.length;
-    const checked=Object.values(d.checked||{}).filter(Boolean).length;
-    const rate=total?Math.round((checked/total)*100):0;
-    let h=`<div class="print-record" style="font-family:'M PLUS Rounded 1c',sans-serif">
-      <div style="border-bottom:2px solid #5db870;padding-bottom:8px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end">
-        <div style="font-size:20px;font-weight:700;color:#2e8b47">🌿 My Routine</div>
-        <div style="font-size:12px;color:#888">${dateBig(cur)}（${dateSub(cur)}）</div>
-      </div>
-      <div style="margin-bottom:12px">
-        <div style="font-size:11px;font-weight:700;color:#2e8b47;margin-bottom:4px">🎯 今日の目標</div>
-        <div style="border:1px solid #d4edda;border-radius:8px;padding:8px 12px;font-size:13px;min-height:36px;color:#333">${esc(d.goal||'')}</div>
-      </div>
-      <div style="margin-bottom:14px">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-size:16px;font-weight:700;color:#2e8b47">${rate}%</span>
-          <span style="font-size:12px;color:#888">${checked} / ${total} 完了</span>
-        </div>
-        <div class="pbar-bg"><div class="pbar-fill" style="width:${rate}%"></div></div>
+/* ===== 今日タブ ===== */
+function renderHeader(){
+  document.getElementById('dateBig').textContent=dateBig(cur);
+  document.getElementById('dateSub').textContent=dateSub(cur);
+}
+function renderToday(){
+  const d=dayData();
+  const total=state.routines.length;
+  const checked=Object.values(d.checked||{}).filter(Boolean).length;
+  const rate=total?Math.round((checked/total)*100):0;
+  let h=`
+  <div class="msg-box">
+    <div class="msg-label">🎯 今日の目標</div>
+    <textarea class="msg-ta" placeholder="今日の目標を書こう..." oninput="upMsg('goal',this.value)">${esc(d.goal||'')}</textarea>
+  </div>
+  <div class="progress-section">
+    <div class="progress-row"><span class="progress-pct">${rate}%</span><span class="progress-count">${checked} / ${total} 完了</span></div>
+    <div class="pbar-bg"><div class="pbar-fill" style="width:${rate}%"></div></div>
+  </div>`;
+  for(const t of getTimes()){
+    const items=state.routines.filter(r=>r.time===t.id);
+    if(!items.length)continue;
+    h+=`<div class="section"><div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:15px;margin-left:2px">${t.e}</span></div>`;
+    for(const r of items){
+      const on=!!(d.checked&&d.checked[r.id]);
+      h+=`<div class="routine-item ${on?'done':''}" onclick="tog('${r.id}')">
+        <button class="chk ${on?'on':''}" onclick="event.stopPropagation();tog('${r.id}')">✓</button>
+        <span class="item-txt">${esc(r.name)}</span>
       </div>`;
-    for(const t of TIMES){
-      const items=state.routines.filter(r=>r.time===t.id);
-      if(!items.length)continue;
-      h+=`<div style="margin-bottom:10px">
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
-          <span class="sec-badge">${t.label}</span><span style="font-size:14px">${t.e}</span>
-        </div>`;
-      for(const r of items){
-        const on=!!(d.checked&&d.checked[r.id]);
-        h+=`<div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:#fff;border:0.5px solid #ebebeb;border-radius:10px;margin-bottom:3px;${on?'opacity:0.55':''}">
-          <div style="width:16px;height:16px;border-radius:50%;border:1.5px solid ${on?'#5db870':'#a8d9b3'};background:${on?'#5db870':'none'};display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:#fff;font-weight:700">${on?'✓':''}</div>
-          <span style="font-size:13px;color:#333;${on?'text-decoration:line-through':''}">${esc(r.name)}</span>
-        </div>`;
-      }
-      h+='</div>';
     }
-    h+=`<div style="margin-top:12px">
-        <div style="font-size:11px;font-weight:700;color:#2e8b47;margin-bottom:4px">📝 今日の振り返り</div>
-        <div style="border:1px solid #d4edda;border-radius:8px;padding:8px 12px;font-size:13px;min-height:56px;color:#333">${esc(d.review||'')}</div>
-      </div>
-      <div style="margin-top:20px;padding-top:8px;border-top:1px solid #d4edda;font-size:10px;color:#aaa;display:flex;justify-content:space-between">
-        <span>My Routine</span><span>${dateBig(cur)} 印刷</span>
-      </div></div>`;
-    pt.innerHTML=h;
-  } else {
-    const now=new Date();
-    let h=`<div class="print-list-wrap" style="font-family:'M PLUS Rounded 1c',sans-serif">
-      <div style="border-bottom:2px solid #5db870;padding-bottom:8px;margin-bottom:16px">
-        <div style="font-size:20px;font-weight:700;color:#2e8b47">🌿 My Routine — ルーティーン一覧</div>
-        <div style="font-size:11px;color:#888;margin-top:2px">全${state.routines.length}件　印刷日: ${fmtKey(now)}</div>
-      </div>`;
-    let hasItem=false;
-    for(const t of TIMES){
-      const items=state.routines.filter(r=>r.time===t.id);
-      if(!items.length)continue;
-      hasItem=true;
-      h+=`<div style="margin-bottom:14px">
-        <div class="pl-sec-head" style="font-size:12px;font-weight:700;color:#2e8b47;background:#d4edda;border-radius:6px;padding:3px 10px;display:inline-block;margin-bottom:6px">${t.label} ${t.e}</div>`;
-      for(const r of items){
-        h+=`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:0.5px solid #eee;font-size:13px;color:#333">
-          <div style="width:14px;height:14px;border:1px solid #a8d9b3;border-radius:3px;flex-shrink:0"></div>
-          <span>${esc(r.name)}</span>
-        </div>`;
-      }
-      h+='</div>';
-    }
-    if(!hasItem)h+=`<div style="text-align:center;padding:2rem;color:#aaa;font-size:13px">ルーティーンがありません</div>`;
-    h+=`<div style="margin-top:20px;padding-top:8px;border-top:1px solid #d4edda;font-size:10px;color:#aaa;display:flex;justify-content:space-between">
-      <span>My Routine</span><span>${fmtKey(now)} 印刷</span>
-    </div></div>`;
-    pt.innerHTML=h;
+    h+='</div>';
   }
-  setTimeout(()=>{window.print();setTimeout(()=>{pt.innerHTML='';},800);},100);
+  if(!total)h+=`<div class="empty">ルーティーンがありません<br>右上「✎ 編集」から<br>追加してください</div>`;
+  h+=`<div class="msg-box" style="margin-top:8px">
+    <div class="msg-label">📝 今日の振り返り</div>
+    <textarea class="msg-ta" placeholder="今日を振り返ろう..." oninput="upMsg('review',this.value)">${esc(d.review||'')}</textarea>
+  </div>`;
+  document.getElementById('panel-today').innerHTML=h;
 }
 
+/* ===== 編集タブ ===== */
+function renderEdit(){
+  let h='';
+  if(sortMode){
+    // 並び替えモード：時間帯ごとに区切ってドラッグ
+    h+=`<div class="sort-bar">
+      <span class="sort-bar-txt">☰ 並び替えモード</span>
+      <button class="sort-done-btn" onclick="exitSortMode()">✓ 完了</button>
+    </div>`;
+    for(const t of getTimes()){
+      const items=state.routines.filter(r=>r.time===t.id);
+      if(!items.length)continue;
+      h+=`<div style="margin-bottom:12px">
+        <div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:15px;margin-left:2px">${t.e}</span></div>
+        <div data-time-group="${t.id}">`;
+      for(const r of items){
+        h+=`<div class="sort-item" data-id="${r.id}" data-time="${t.id}">
+          <span class="sort-handle"
+            onmousedown="pcDragStart(event,'${r.id}')"
+            ontouchstart="touchStart(event,'${r.id}','${t.id}')">☰</span>
+          <span class="sort-name">${esc(r.name)}</span>
+        </div>`;
+      }
+      h+=`</div></div>`;
+    }
+  } else {
+    // 通常モード
+    h+=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="font-size:12px;color:#888">項目をタップして名前を編集</div>
+      <button class="icon-btn" onclick="enterSortMode()">☰ 並び替え</button>
+    </div>`;
+    for(const t of getTimes()){
+      const items=state.routines.filter(r=>r.time===t.id);
+      h+=`<div class="section">
+        <div class="sec-head">
+          <span class="sec-badge">${t.label}</span>
+          <span style="font-size:15px;margin-left:2px">${t.e}</span>
+        </div>`;
+      for(const r of items){
+        h+=`<div class="routine-item" data-id="${r.id}">
+          <span class="item-txt" id="tx-${r.id}" onclick="startEdit('${r.id}')">${esc(r.name)}</span>
+          <div class="item-acts">
+            <select class="ibtn" style="font-size:10px;padding:2px 4px;font-family:'M PLUS Rounded 1c',sans-serif;border-radius:20px" onchange="chTime('${r.id}',this.value)">
+              ${getTimes().map(tt=>`<option value="${tt.id}"${tt.id===r.time?' selected':''}>${tt.label}</option>`).join('')}
+            </select>
+            <button class="ibtn del" style="font-size:10px;padding:2px 6px" onclick="delR('${r.id}')">削除</button>
+          </div>
+        </div>`;
+      }
+      h+=`<div class="add-row">
+        <input class="add-inp" id="ai-${t.id}" placeholder="${t.label}のルーティーンを追加..." onkeydown="if(event.key==='Enter')addR('${t.id}')">
+        <button class="add-btn" onclick="addR('${t.id}')">追加</button>
+      </div></div>`;
+    }
+    // 時間帯管理
+    h+=`<div style="margin-top:16px;border-top:0.5px solid #e0e0e0;padding-top:14px">
+      <div style="font-size:12px;font-weight:700;color:var(--g600);margin-bottom:10px">⏰ 時間帯の管理</div>`;
+    for(const t of getTimes()){
+      const cnt=state.routines.filter(r=>r.time===t.id).length;
+      h+=`<div class="time-section">
+        <div class="time-section-head">
+          <div class="time-section-label">
+            <input class="time-emoji-inp" value="${esc(t.e)}" maxlength="2" oninput="updateTimeEmoji('${t.id}',this.value)" title="絵文字">
+            <input class="time-name-inp" value="${esc(t.label)}" maxlength="8" oninput="updateTimeLabel('${t.id}',this.value)" title="名前">
+            <span style="font-size:11px;color:#aaa">${cnt}件</span>
+          </div>
+          <button class="time-del-btn" onclick="delTime('${t.id}')">削除</button>
+        </div>
+      </div>`;
+    }
+    h+=`<div class="add-time-row">
+      <input class="add-time-inp" id="newTimeInp" placeholder="新しい時間帯名（例：夜中）" maxlength="8">
+      <button class="add-btn" onclick="addTime()">追加</button>
+    </div></div>`;
+  }
+  document.getElementById('panel-edit').innerHTML=h;
+}
+
+/* ===== 時間帯管理 ===== */
+function updateTimeLabel(id,val){
+  const t=state.times.find(t=>t.id===id);
+  if(t){t.label=val;save();}
+}
+function updateTimeEmoji(id,val){
+  const t=state.times.find(t=>t.id===id);
+  if(t){t.e=val;save();}
+}
+function addTime(){
+  const inp=document.getElementById('newTimeInp');
+  const label=(inp.value||'').trim();
+  if(!label)return;
+  const id='time_'+Date.now().toString(36);
+  state.times.push({id,label,e:'📌'});
+  inp.value='';save();renderEdit();renderToday();
+  showToast('✅ 時間帯「'+label+'」を追加しました');
+}
+function delTime(id){
+  const cnt=state.routines.filter(r=>r.time===id).length;
+  const t=state.times.find(t=>t.id===id);
+  if(cnt>0){
+    if(!confirm(`「${t?t.label:''}」には${cnt}件のルーティーンがあります。\n削除するとルーティーンも一緒に削除されます。\nよろしいですか？`))return;
+    state.routines=state.routines.filter(r=>r.time!==id);
+  } else {
+    if(!confirm(`「${t?t.label:''}」を削除しますか？`))return;
+  }
+  state.times=state.times.filter(t=>t.id!==id);
+  save();renderEdit();renderToday();
+  showToast('🗑️ 時間帯を削除しました');
+}
+
+/* ===== 並び替えモード ===== */
+function enterSortMode(){sortMode=true;renderEdit();}
+function exitSortMode(){sortMode=false;save();renderEdit();showToast('✅ 並び替えを保存しました');}
+
+// PC用ドラッグ
+let pcDragId=null,pcDragTime=null;
+function pcDragStart(e,id){
+  const el=e.currentTarget.closest('.sort-item');
+  pcDragId=id;
+  pcDragTime=el.dataset.time;
+  el.classList.add('dragging');
+  const move=ev=>{
+    const below=document.elementFromPoint(ev.clientX,ev.clientY);
+    const target=below?below.closest('.sort-item'):null;
+    document.querySelectorAll('.sort-item').forEach(i=>i.classList.remove('drag-over'));
+    if(target&&target.dataset.id!==pcDragId&&target.dataset.time===pcDragTime)target.classList.add('drag-over');
+  };
+  const up=ev=>{
+    document.removeEventListener('mousemove',move);
+    document.removeEventListener('mouseup',up);
+    const below=document.elementFromPoint(ev.clientX,ev.clientY);
+    const target=below?below.closest('.sort-item'):null;
+    if(target&&target.dataset.id!==pcDragId&&target.dataset.time===pcDragTime){
+      reorder(pcDragId,target.dataset.id);
+    }
+    document.querySelectorAll('.sort-item').forEach(i=>{i.classList.remove('dragging');i.classList.remove('drag-over');});
+    pcDragId=null;
+  };
+  document.addEventListener('mousemove',move);
+  document.addEventListener('mouseup',up);
+}
+
+// タッチ用ドラッグ（ハンドルのみ）
+let touchId=null,touchTime=null,touchClone=null,touchOffY=0;
+function touchStart(e,id,timeId){
+  e.stopPropagation();
+  const el=e.currentTarget.closest('.sort-item');
+  touchId=id;touchTime=timeId;
+  const touch=e.touches[0];
+  const rect=el.getBoundingClientRect();
+  touchOffY=touch.clientY-rect.top;
+  touchClone=el.cloneNode(true);
+  touchClone.style.cssText=`position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;z-index:9999;pointer-events:none;opacity:0.85;box-shadow:0 8px 24px rgba(0,0,0,0.18);border:1.5px solid #5db870;border-radius:12px;background:#fff;`;
+  document.body.appendChild(touchClone);
+  el.style.opacity='0.3';
+  document.addEventListener('touchmove',onTouchMove,{passive:false});
+  document.addEventListener('touchend',onTouchEnd);
+}
+function onTouchMove(e){
+  if(!touchClone)return;
+  e.preventDefault();
+  const touch=e.touches[0];
+  touchClone.style.top=(touch.clientY-touchOffY)+'px';
+  touchClone.style.display='none';
+  const below=document.elementFromPoint(touch.clientX,touch.clientY);
+  touchClone.style.display='';
+  const target=below?below.closest('.sort-item'):null;
+  document.querySelectorAll('.sort-item').forEach(i=>i.classList.remove('drag-over'));
+  if(target&&target.dataset.id&&target.dataset.id!==touchId&&target.dataset.time===touchTime)
+    target.classList.add('drag-over');
+}
+function onTouchEnd(e){
+  document.removeEventListener('touchmove',onTouchMove);
+  document.removeEventListener('touchend',onTouchEnd);
+  if(!touchClone)return;
+  const touch=e.changedTouches[0];
+  touchClone.style.display='none';
+  const below=document.elementFromPoint(touch.clientX,touch.clientY);
+  touchClone.style.display='';
+  const target=below?below.closest('.sort-item'):null;
+  if(target&&target.dataset.id&&target.dataset.id!==touchId&&target.dataset.time===touchTime){
+    reorder(touchId,target.dataset.id);
+  }
+  touchClone.remove();touchClone=null;
+  document.querySelectorAll('.sort-item').forEach(i=>{i.style.opacity='';i.classList.remove('drag-over');});
+  touchId=null;touchTime=null;
+}
+function reorder(srcId,tgtId){
+  const si=state.routines.findIndex(r=>r.id===srcId);
+  const ti=state.routines.findIndex(r=>r.id===tgtId);
+  if(si<0||ti<0)return;
+  const[item]=state.routines.splice(si,1);
+  state.routines.splice(ti,0,item);
+  renderEdit();
+}
+
+/* ===== ルーティーン操作 ===== */
+function tog(id){const d=dayData();if(!d.checked)d.checked={};d.checked[id]=!d.checked[id];save();renderToday();}
+function upMsg(k,v){const d=dayData();d[k]=v;save();}
+function addR(tid){
+  const inp=document.getElementById('ai-'+tid);
+  const name=(inp.value||'').trim();if(!name)return;
+  const id='r'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+  state.routines.push({id,name,time:tid});
+  inp.value='';save();renderEdit();
+  setTimeout(()=>{const el=document.getElementById('ai-'+tid);if(el)el.focus();},50);
+}
+function delR(id){
+  if(!confirm('このルーティーンを削除しますか？'))return;
+  state.routines=state.routines.filter(r=>r.id!==id);
+  Object.keys(state.days).forEach(k=>{if(state.days[k].checked)delete state.days[k].checked[id];});
+  save();renderEdit();
+}
+function chTime(id,t){const r=state.routines.find(r=>r.id===id);if(r){r.time=t;save();renderEdit();}}
+function startEdit(id){
+  const r=state.routines.find(r=>r.id===id);if(!r)return;
+  const span=document.getElementById('tx-'+id);if(!span)return;
+  const inp=document.createElement('input');inp.className='edit-inp';inp.value=r.name;
+  span.replaceWith(inp);inp.focus();inp.select();
+  const sv=()=>{const v=inp.value.trim();if(v)r.name=v;save();renderEdit();};
+  inp.onblur=sv;inp.onkeydown=e=>{if(e.key==='Enter')sv();if(e.key==='Escape')renderEdit();};
+}
+
+/* ===== グラフ ===== */
+function renderGraph(){
+  const keys=[];const now=new Date();
+  for(let i=13;i>=0;i--){const d=new Date(now);d.setDate(d.getDate()-i);keys.push(fmtKey(d));}
+  const labels=keys.map(k=>{const d=keyToDate(k);return `${d.getMonth()+1}/${d.getDate()}`;});
+  const data=keys.map(k=>calcRate(k));
+  const avg7=Math.round(keys.slice(-7).reduce((a,k)=>a+calcRate(k),0)/7);
+  document.getElementById('panel-graph').innerHTML=`
+  <div class="graph-stat">
+    <div class="stat-card"><div class="stat-val">${calcRate(cur)}%</div><div class="stat-lbl">今日</div></div>
+    <div class="stat-card"><div class="stat-val">${avg7}%</div><div class="stat-lbl">7日平均</div></div>
+    <div class="stat-card"><div class="stat-val">${state.routines.length}</div><div class="stat-lbl">ルーティーン数</div></div>
+  </div>
+  <div class="chart-wrap">
+    <div style="font-size:12px;color:#888;margin-bottom:10px">過去14日間の達成率</div>
+    <div style="position:relative;height:200px"><canvas id="rc" role="img" aria-label="達成率">達成率推移</canvas></div>
+  </div>`;
+  setTimeout(()=>{
+    const canvas=document.getElementById('rc');if(!canvas)return;
+    if(chart){chart.destroy();chart=null;}
+    chart=new Chart(canvas,{
+      type:'bar',
+      data:{labels,datasets:[{label:'達成率(%)',data,backgroundColor:data.map(v=>v>=80?'#2e8b47':v>=50?'#5db870':'#a8d9b3'),borderRadius:6,borderSkipped:false}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{
+          y:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:11,family:"'M PLUS Rounded 1c'"}},grid:{color:'rgba(0,0,0,0.05)'},border:{display:false}},
+          x:{ticks:{font:{size:10,family:"'M PLUS Rounded 1c'"},maxRotation:45,autoSkip:false},grid:{display:false}}
+        }
+      }
+    });
+  },60);
+}
+
+/* ===== バックアップ ===== */
 function exportJSON(){
   const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
@@ -297,7 +530,7 @@ function exportCSV(){
     const d=state.days[k];const rate=calcRate(k);
     for(const r of state.routines){
       const done=(d.checked&&d.checked[r.id])?'✓':'';
-      const t=TIMES.find(t=>t.id===r.time);
+      const t=getTimes().find(t=>t.id===r.time);
       rows.push([k,r.name,t?t.label:'',done,d.goal||'',d.review||'',rate]);
     }
     if(!state.routines.length)rows.push([k,'','','',d.goal||'',d.review||'',rate]);
@@ -320,7 +553,9 @@ function handleImport(input){
         const parsed=JSON.parse(e.target.result);
         if(!parsed.routines||!parsed.days)throw new Error('形式が違います');
         if(!confirm('現在のデータをすべて上書きしてインポートしますか？'))return;
-        state=parsed;save();renderAll();showToast('✅ JSONデータを復元しました');
+        state=parsed;
+        if(!state.times)state.times=DEFAULT_TIMES.map(t=>({...t}));
+        save();renderAll();showToast('✅ JSONデータを復元しました');
       }else{
         const lines=e.target.result.split('\n').filter(l=>l.trim());
         if(lines.length<2){showToast('⚠️ データがありません');return;}
@@ -344,7 +579,7 @@ function handleImport(input){
 function resetAll(){
   if(!confirm('⚠️ すべてのデータを削除します。この操作は取り消せません。\n本当に削除しますか？'))return;
   if(!confirm('もう一度確認します。全データを削除しますか？'))return;
-  state={routines:[],days:{}};save();renderAll();showToast('🗑️ データを全削除しました');
+  state={routines:[],days:{},times:DEFAULT_TIMES.map(t=>({...t}))};save();renderAll();showToast('🗑️ データを全削除しました');
 }
 function renderBackup(){
   const keyCount=Object.keys(state.days).length;
@@ -352,7 +587,7 @@ function renderBackup(){
   document.getElementById('panel-backup').innerHTML=`
   <div class="backup-section">
     <div class="backup-title">📤 エクスポート（バックアップ）</div>
-    <div class="backup-desc">現在のデータをファイルに保存します。ルーティーン設定・毎日の記録・目標・振り返りがすべて含まれます。<br>記録日数: <strong>${keyCount}日</strong>${lastKey?'　最終記録: <strong>'+lastKey+'</strong>':''}</div>
+    <div class="backup-desc">現在のデータをファイルに保存します。ルーティーン設定・時間帯・毎日の記録がすべて含まれます。<br>記録日数: <strong>${keyCount}日</strong>${lastKey?'　最終記録: <strong>'+lastKey+'</strong>':''}</div>
     <div class="backup-row">
       <button class="backup-btn export" onclick="exportJSON()">📄 JSONで保存<br><span style="font-size:10px;font-weight:400">完全バックアップ・復元用</span></button>
       <button class="backup-btn export" onclick="exportCSV()">📊 CSVで保存<br><span style="font-size:10px;font-weight:400">Excelで開いて確認用</span></button>
@@ -372,183 +607,90 @@ function renderBackup(){
     <div class="backup-row"><button class="backup-btn danger" onclick="resetAll()">全データを削除する</button></div>
   </div>`;
 }
-function renderHeader(){
-  document.getElementById('dateBig').textContent=dateBig(cur);
-  document.getElementById('dateSub').textContent=dateSub(cur);
-}
-function renderToday(){
-  const d=dayData();
-  const total=state.routines.length;
-  const checked=Object.values(d.checked||{}).filter(Boolean).length;
-  const rate=total?Math.round((checked/total)*100):0;
-  let h=`
-  <div class="msg-box">
-    <div class="msg-label">🎯 今日の目標</div>
-    <textarea class="msg-ta" placeholder="今日の目標を書こう..." oninput="upMsg('goal',this.value)">${esc(d.goal||'')}</textarea>
-  </div>
-  <div class="progress-section">
-    <div class="progress-row"><span class="progress-pct">${rate}%</span><span class="progress-count">${checked} / ${total} 完了</span></div>
-    <div class="pbar-bg"><div class="pbar-fill" style="width:${rate}%"></div></div>
-  </div>`;
-  for(const t of TIMES){
-    const items=state.routines.filter(r=>r.time===t.id);
-    if(!items.length)continue;
-    h+=`<div class="section"><div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:15px;margin-left:2px">${t.e}</span></div>`;
-    for(const r of items){
-      const on=!!(d.checked&&d.checked[r.id]);
-      h+=`<div class="routine-item ${on?'done':''}" onclick="tog('${r.id}')">
-        <button class="chk ${on?'on':''}" onclick="event.stopPropagation();tog('${r.id}')">✓</button>
-        <span class="item-txt">${esc(r.name)}</span>
+
+/* ===== 印刷 ===== */
+function showPrintModal(){document.getElementById('printModal').style.display='flex';}
+function hidePrintModal(){document.getElementById('printModal').style.display='none';}
+function doPrint(type){
+  hidePrintModal();
+  const pt=document.getElementById('print-target');
+  if(type==='record'){
+    const d=dayData();
+    const total=state.routines.length;
+    const checked=Object.values(d.checked||{}).filter(Boolean).length;
+    const rate=total?Math.round((checked/total)*100):0;
+    let h=`<div class="print-record" style="font-family:'M PLUS Rounded 1c',sans-serif">
+      <div style="border-bottom:2px solid #5db870;padding-bottom:8px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end">
+        <div style="font-size:20px;font-weight:700;color:#2e8b47">🌿 My Routine</div>
+        <div style="font-size:12px;color:#888">${dateBig(cur)}（${dateSub(cur)}）</div>
+      </div>
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;color:#2e8b47;margin-bottom:4px">🎯 今日の目標</div>
+        <div style="border:1px solid #d4edda;border-radius:8px;padding:8px 12px;font-size:13px;min-height:36px">${esc(d.goal||'')}</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:16px;font-weight:700;color:#2e8b47">${rate}%</span>
+          <span style="font-size:12px;color:#888">${checked} / ${total} 完了</span>
+        </div>
+        <div class="pbar-bg"><div class="pbar-fill" style="width:${rate}%"></div></div>
       </div>`;
-    }
-    h+='</div>';
-  }
-  if(!total)h+=`<div class="empty">ルーティーンがありません<br>右上「✎ 編集」から<br>追加してください</div>`;
-  h+=`<div class="msg-box" style="margin-top:8px">
-    <div class="msg-label">📝 今日の振り返り</div>
-    <textarea class="msg-ta" placeholder="今日を振り返ろう..." oninput="upMsg('review',this.value)">${esc(d.review||'')}</textarea>
-  </div>`;
-  document.getElementById('panel-today').innerHTML=h;
-}
-let sortMode=false;
-function renderEdit(){
-  let h='';
-  if(sortMode){
-    h+=`<div class="sort-bar">
-      <span class="sort-bar-txt">☰ 並び替えモード</span>
-      <button class="sort-done-btn" onclick="exitSortMode()">✓ 完了</button>
-    </div><div id="sort-list">`;
-    for(const r of state.routines){
-      const t=TIMES.find(t=>t.id===r.time);
-      h+=`<div class="sort-item" data-id="${r.id}"
-        draggable="true"
-        ondragstart="sortDragStart(event,this)"
-        ondragover="sortDragOver(event,this)"
-        ondrop="sortDrop(event,this)"
-        ondragend="sortDragEnd()"
-        ontouchstart="touchStart(event,this)"
-        ontouchmove="touchMove(event)"
-        ontouchend="touchEnd(event)">
-        <span class="sort-handle">☰</span>
-        <span class="sort-name">${esc(r.name)}</span>
-        <span class="sort-time">${t?t.label+' '+t.e:''}</span>
-      </div>`;
-    }
-    h+='</div>';
-  } else {
-    h+=`<div style="text-align:right;margin-bottom:8px">
-      <button class="icon-btn" onclick="enterSortMode()">☰ 並び替え</button>
-    </div>`;
-    for(const t of TIMES){
+    for(const t of getTimes()){
       const items=state.routines.filter(r=>r.time===t.id);
-      h+=`<div class="section"><div class="sec-head"><span class="sec-badge">${t.label}</span><span style="font-size:15px;margin-left:2px">${t.e}</span></div>`;
+      if(!items.length)continue;
+      h+=`<div style="margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+          <span class="sec-badge">${t.label}</span><span style="font-size:14px">${t.e}</span>
+        </div>`;
       for(const r of items){
-        h+=`<div class="routine-item" data-id="${r.id}">
-          <span class="item-txt" id="tx-${r.id}" onclick="startEdit('${r.id}')">${esc(r.name)}</span>
-          <div class="item-acts">
-            <select class="ibtn" style="font-size:10px;padding:2px 4px;font-family:'M PLUS Rounded 1c',sans-serif;border-radius:20px" onchange="chTime('${r.id}',this.value)">
-              ${TIMES.map(tt=>`<option value="${tt.id}"${tt.id===r.time?' selected':''}>${tt.label}</option>`).join('')}
-            </select>
-            <button class="ibtn del" style="font-size:10px;padding:2px 6px" onclick="delR('${r.id}')">削除</button>
-          </div>
+        const on=!!(d.checked&&d.checked[r.id]);
+        h+=`<div style="display:flex;align-items:center;gap:8px;padding:6px 10px;border:0.5px solid #ebebeb;border-radius:10px;margin-bottom:3px;${on?'opacity:0.55':''}">
+          <div style="width:16px;height:16px;border-radius:50%;border:1.5px solid ${on?'#5db870':'#a8d9b3'};background:${on?'#5db870':'none'};display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:#fff;font-weight:700">${on?'✓':''}</div>
+          <span style="font-size:13px;${on?'text-decoration:line-through;color:#aaa':''}">${esc(r.name)}</span>
         </div>`;
       }
-      h+=`<div class="add-row">
-        <input class="add-inp" id="ai-${t.id}" placeholder="${t.label}のルーティーンを追加..." onkeydown="if(event.key==='Enter')addR('${t.id}')">
-        <button class="add-btn" onclick="addR('${t.id}')">追加</button>
-      </div></div>`;
+      h+='</div>';
     }
-  }
-  document.getElementById('panel-edit').innerHTML=h;
-}
-function enterSortMode(){sortMode=true;renderEdit();}
-function exitSortMode(){sortMode=false;save();renderEdit();showToast('✅ 並び替えを保存しました');}
-
-/* ドラッグ（PC） */
-let dragSrcId=null;
-function sortDragStart(e,el){dragSrcId=el.dataset.id;el.classList.add('dragging');e.dataTransfer.effectAllowed='move';}
-function sortDragOver(e,el){e.preventDefault();document.querySelectorAll('.sort-item').forEach(i=>i.classList.remove('drag-over'));if(el.dataset.id!==dragSrcId)el.classList.add('drag-over');}
-function sortDrop(e,el){
-  e.preventDefault();
-  const tid=el.dataset.id;if(!dragSrcId||dragSrcId===tid)return;
-  const si=state.routines.findIndex(r=>r.id===dragSrcId);
-  const ti=state.routines.findIndex(r=>r.id===tid);
-  if(si<0||ti<0)return;
-  const[item]=state.routines.splice(si,1);state.routines.splice(ti,0,item);
-  renderEdit();
-}
-function sortDragEnd(){document.querySelectorAll('.sort-item').forEach(i=>{i.classList.remove('dragging');i.classList.remove('drag-over');});dragSrcId=null;}
-
-/* タッチ（iPhone） */
-let touchDragEl=null,touchDragId=null,touchClone=null,touchOffsetY=0;
-function touchStart(e,el){
-  touchDragEl=el;touchDragId=el.dataset.id;
-  const touch=e.touches[0];
-  const rect=el.getBoundingClientRect();
-  touchOffsetY=touch.clientY-rect.top;
-  touchClone=el.cloneNode(true);
-  touchClone.style.cssText=`position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;opacity:0.85;z-index:9999;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,0.18);border:1.5px solid #5db870;border-radius:12px;background:#fff;`;
-  document.body.appendChild(touchClone);
-  el.style.opacity='0.3';
-}
-function touchMove(e){
-  if(!touchClone)return;
-  e.preventDefault();
-  const touch=e.touches[0];
-  touchClone.style.top=(touch.clientY-touchOffsetY)+'px';
-  touchClone.style.display='none';
-  const below=document.elementFromPoint(touch.clientX,touch.clientY);
-  touchClone.style.display='';
-  const target=below?below.closest('.sort-item'):null;
-  document.querySelectorAll('.sort-item').forEach(i=>i.classList.remove('drag-over'));
-  if(target&&target.dataset.id&&target.dataset.id!==touchDragId)target.classList.add('drag-over');
-}
-function touchEnd(e){
-  if(!touchClone||!touchDragEl)return;
-  const touch=e.changedTouches[0];
-  touchClone.style.display='none';
-  const below=document.elementFromPoint(touch.clientX,touch.clientY);
-  touchClone.style.display='';
-  const target=below?below.closest('.sort-item'):null;
-  if(target&&target.dataset.id&&target.dataset.id!==touchDragId){
-    const si=state.routines.findIndex(r=>r.id===touchDragId);
-    const ti=state.routines.findIndex(r=>r.id===target.dataset.id);
-    if(si>=0&&ti>=0){const[item]=state.routines.splice(si,1);state.routines.splice(ti,0,item);}
-  }
-  touchClone.remove();touchClone=null;touchDragEl.style.opacity='';touchDragEl=null;touchDragId=null;
-  renderEdit();
-}
-function renderGraph(){
-  const keys=[];const now=new Date();
-  for(let i=13;i>=0;i--){const d=new Date(now);d.setDate(d.getDate()-i);keys.push(fmtKey(d));}
-  const labels=keys.map(k=>{const d=keyToDate(k);return `${d.getMonth()+1}/${d.getDate()}`;});
-  const data=keys.map(k=>calcRate(k));
-  const avg7=Math.round(keys.slice(-7).reduce((a,k)=>a+calcRate(k),0)/7);
-  document.getElementById('panel-graph').innerHTML=`
-  <div class="graph-stat">
-    <div class="stat-card"><div class="stat-val">${calcRate(cur)}%</div><div class="stat-lbl">今日</div></div>
-    <div class="stat-card"><div class="stat-val">${avg7}%</div><div class="stat-lbl">7日平均</div></div>
-    <div class="stat-card"><div class="stat-val">${state.routines.length}</div><div class="stat-lbl">ルーティーン数</div></div>
-  </div>
-  <div class="chart-wrap">
-    <div style="font-size:12px;color:#888;margin-bottom:10px">過去14日間の達成率</div>
-    <div style="position:relative;height:200px"><canvas id="rc" role="img" aria-label="過去14日間の達成率">達成率推移</canvas></div>
-  </div>`;
-  setTimeout(()=>{
-    const canvas=document.getElementById('rc');if(!canvas)return;
-    if(chart){chart.destroy();chart=null;}
-    chart=new Chart(canvas,{
-      type:'bar',
-      data:{labels,datasets:[{label:'達成率(%)',data,backgroundColor:data.map(v=>v>=80?'#2e8b47':v>=50?'#5db870':'#a8d9b3'),borderRadius:6,borderSkipped:false}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-        scales:{
-          y:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:11,family:"'M PLUS Rounded 1c'"}},grid:{color:'rgba(0,0,0,0.05)'},border:{display:false}},
-          x:{ticks:{font:{size:10,family:"'M PLUS Rounded 1c'"},maxRotation:45,autoSkip:false},grid:{display:false}}
-        }
+    h+=`<div style="margin-top:12px">
+        <div style="font-size:11px;font-weight:700;color:#2e8b47;margin-bottom:4px">📝 今日の振り返り</div>
+        <div style="border:1px solid #d4edda;border-radius:8px;padding:8px 12px;font-size:13px;min-height:56px">${esc(d.review||'')}</div>
+      </div>
+      <div style="margin-top:20px;padding-top:8px;border-top:1px solid #d4edda;font-size:10px;color:#aaa;display:flex;justify-content:space-between">
+        <span>My Routine</span><span>${dateBig(cur)} 印刷</span>
+      </div></div>`;
+    pt.innerHTML=h;
+  }else{
+    const now=new Date();
+    let h=`<div style="font-family:'M PLUS Rounded 1c',sans-serif">
+      <div style="border-bottom:2px solid #5db870;padding-bottom:8px;margin-bottom:16px">
+        <div style="font-size:20px;font-weight:700;color:#2e8b47">🌿 My Routine — ルーティーン一覧</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">全${state.routines.length}件　印刷日: ${fmtKey(now)}</div>
+      </div>`;
+    let hasItem=false;
+    for(const t of getTimes()){
+      const items=state.routines.filter(r=>r.time===t.id);
+      if(!items.length)continue;
+      hasItem=true;
+      h+=`<div style="margin-bottom:14px">
+        <div style="font-size:12px;font-weight:700;color:#2e8b47;background:#d4edda;border-radius:6px;padding:3px 10px;display:inline-block;margin-bottom:6px">${t.label} ${t.e}</div>`;
+      for(const r of items){
+        h+=`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:0.5px solid #eee;font-size:13px">
+          <div style="width:14px;height:14px;border:1px solid #a8d9b3;border-radius:3px;flex-shrink:0"></div>
+          <span>${esc(r.name)}</span>
+        </div>`;
       }
-    });
-  },60);
+      h+='</div>';
+    }
+    if(!hasItem)h+=`<div style="text-align:center;padding:2rem;color:#aaa;font-size:13px">ルーティーンがありません</div>`;
+    h+=`<div style="margin-top:20px;padding-top:8px;border-top:1px solid #d4edda;font-size:10px;color:#aaa;display:flex;justify-content:space-between">
+      <span>My Routine</span><span>${fmtKey(now)} 印刷</span>
+    </div></div>`;
+    pt.innerHTML=h;
+  }
+  setTimeout(()=>{window.print();setTimeout(()=>{pt.innerHTML='';},800);},100);
 }
+
+/* ===== 共通 ===== */
 function renderAll(){
   renderHeader();renderToday();
   if(activePanel==='edit')renderEdit();
@@ -571,39 +713,8 @@ function showPanel(id,btn){
   if(id==='graph')renderGraph();
   if(id==='backup')renderBackup();
 }
-function tog(id){const d=dayData();if(!d.checked)d.checked={};d.checked[id]=!d.checked[id];save();renderToday();}
-function upMsg(k,v){const d=dayData();d[k]=v;save();}
-function addR(tid){
-  const inp=document.getElementById('ai-'+tid);
-  const name=(inp.value||'').trim();
-  if(!name)return;
-  const id='r'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);
-  state.routines.push({id,name,time:tid});
-  inp.value='';
-  save();
-  renderEdit();
-  // 追加後に入力欄にフォーカスを戻す
-  setTimeout(()=>{
-    const el=document.getElementById('ai-'+tid);
-    if(el)el.focus();
-  },50);
-}
-function delR(id){
-  if(!confirm('このルーティーンを削除しますか？'))return;
-  state.routines=state.routines.filter(r=>r.id!==id);
-  Object.keys(state.days).forEach(k=>{if(state.days[k].checked)delete state.days[k].checked[id];});
-  save();renderEdit();
-}
-function chTime(id,t){const r=state.routines.find(r=>r.id===id);if(r){r.time=t;save();renderEdit();}}
-function startEdit(id){
-  const r=state.routines.find(r=>r.id===id);if(!r)return;
-  const span=document.getElementById('tx-'+id);if(!span)return;
-  const inp=document.createElement('input');inp.className='edit-inp';inp.value=r.name;
-  span.replaceWith(inp);inp.focus();inp.select();
-  const sv=()=>{const v=inp.value.trim();if(v)r.name=v;save();renderEdit();};
-  inp.onblur=sv;inp.onkeydown=e=>{if(e.key==='Enter')sv();if(e.key==='Escape')renderEdit();};
-}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
 load();renderAll();
 </script>
